@@ -12,8 +12,8 @@
                         <a class="componentTitle">组件</a>
                         <ul>
                             <li>
-                                <a href="#">input</a>
-                                <a href="#">textArea</a>
+                                <router-link to="/demoPage">Input</router-link>
+                                <router-link to="/demoPage">TextArea</router-link>
                             </li>
                         </ul>
                     </li>
@@ -21,6 +21,7 @@
             </div>
             <!-- 右侧 -->
             <div class="fr rightContent">
+                <right-content></right-content>
             </div>
         </div>
     </div>
@@ -28,8 +29,10 @@
 
 <script>
 import Vue from "vue";
+import RightContent from "../../App.vue";
 export default {
     name: 'Layout',
+    components:{RightContent},
     data(){
         return {
             
@@ -69,8 +72,8 @@ export default {
 .xwVueIntro .hearder{
     width: 1200px;
     margin: 0 auto;
-    height: 73px;
-    line-height: 73px;
+    height: 60px;
+    line-height: 60px;
     border-bottom: 1px solid #aaacaa;
     margin-bottom: 10px;
 }
@@ -121,6 +124,10 @@ export default {
     white-space: nowrap;
     text-overflow: ellipsis;
     font-weight: 400;
+}
+
+.xwVueIntro .content .leftContent li a:hover{
+    color: #409eff;
 }
 
 .xwVueIntro .content .leftContent li .componentTitle{
