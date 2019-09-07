@@ -5,22 +5,15 @@
             <li>
                 <h3>说明</h3>
                 <div>
-                    <p class="instructions">Input 文本框的使用说明，Input 文本框的使用说明Input 文本框的使用说明Input 
-                        文本框的使用说明Input 文本框的使用说明</p>
+                    <p class="instructions">
+                        input文本框，使用v-model进行数据的绑定
+                    </p>
                 </div>
             </li>
             <li>
                 <h3>基础用法</h3>
                 <div class="info">
-                    <!-- 对代码的基本使用说明 -->
-                    <div class="instructionsCode">
-                        <p class="instructions">input通过v-model实现数据的双向绑定</p>
-                    </div>
-                    <!-- 代码展示 -->
-                    <div class="codeContent">
-                        <!-- <le-input v-model="aaa" label="姓名" readonly="true" labelWidth="100"></le-input> -->
-                        写代码
-                    </div>
+                    &lt;le-input on required vType='Number' msg labelWidth="150" placeholder="请输入年龄" label="年龄" v-model="searchModel.age"&gt;&lt;le-input&gt;
                 </div>
             </li>
             <li>
@@ -37,11 +30,13 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <td>labelWidth</td>
-                            <td>设置label的宽度</td>
-                            <td>数字(如:100,200,300....)</td>
-                            <td>任意非负数</td>
-                            <td>100</td>
+                            <tr v-for="(item,idx) in propertys" :key="idx">
+                                <td>{{item.name}}</td>
+                                <td>{{item.desc}}</td>
+                                <td>{{item.type}}</td>
+                                <td>{{item.required}}</td>
+                                <td>{{item.default}}</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -93,7 +88,16 @@ export default {
     name: 'Input',
     data(){
         return {
-            
+            propertys:[
+                {name:"v-model",desc:"绑定字段",type:"任意",required:"必填",default:""},
+                {name:"labelWidth",desc:"label宽度",type:"Number",required:"非必填",default:"100"},
+                {name:"placeholder",desc:"placeholder",type:"string",required:"非必填",default:"-"},
+                {name:"label",desc:"label名",type:"string",required:"非必填",default:"-"},
+                {name:"on",desc:"是否开启验证",type:"boolean",required:"非必填",default:"-"},
+                {name:"required",desc:"是否必填",type:"boolean",required:"非必填",default:"-"},
+                {name:"vType",desc:"文本框验证类型",type:"string",required:"非必填",default:"-"},
+                {name:"msg",desc:"错误提示信息",type:"string",required:"非必填",default:"-"},
+            ]
         }
     },
     methods:{
@@ -133,16 +137,6 @@ export default {
     min-height:100px;
     border:1px solid #cac6c6;
     background-color: #ebebeb;
-    padding-bottom: 30px;
-}
-
-.detailContent .info .instructionsCode{
-    padding: 0 30px;
-    border-bottom:1px solid #ebebeb;
-    background-color: #fff;
-}
-
-.detailContent .info .codeContent{
     padding:30px;
 }
 

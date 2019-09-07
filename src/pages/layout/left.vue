@@ -55,10 +55,6 @@ export default {
     cursor: pointer;
 }
 
-.xwVueIntro .content .leftContent li a:hover{
-    color: #409eff;
-}
-
 .xwVueIntro .content .leftContent li .componentTitle{
     font-size: 16px;
     color: #333;
