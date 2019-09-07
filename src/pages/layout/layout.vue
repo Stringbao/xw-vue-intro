@@ -5,7 +5,7 @@
             <!-- 左侧 -->
            <Left></Left>
             <!-- 右侧 -->
-            <div class="fr rightContent">
+            <div class="rightContent">
                <router-view></router-view>
             </div>
         </div>
@@ -37,6 +37,10 @@ export default {
 
 .fr{
     float: right;
+}
+
+*{
+    font-family: Helvetica;
 }
 
 .clearfix:after{
@@ -89,63 +93,24 @@ export default {
 .xwVueIntro .content{
     flex:1;
     width: 1200px;
-    margin: 0 auto;
-}
-
-.xwVueIntro .content .leftContent{
-    width: 240px;
     height: 100%;
-    border:1px solid #aaacaa;
-    text-align: left;
-    overflow-y: scroll;
-}
-
-
-.xwVueIntro .content .leftContent li {
-    height: 40px;
-    color: #444;
-    line-height: 40px;
-    font-size: 14px;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    font-weight: 400;
-}
-
-.xwVueIntro .content .leftContent li a:hover{
-    color: #409eff;
-}
-
-.xwVueIntro .content .leftContent li .componentTitle{
-    font-size: 16px;
-    color: #333;
-    line-height: 40px;
-    height: 40px;
-    margin: 0;
-    padding: 0;
-    text-decoration: none;
-    font-weight: 700;
-}
-
-.xwVueIntro .content .leftContent li a{
-    display: block;
-    height: 40px;
-    color: #444;
-    line-height: 40px;
-    font-size: 14px;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    font-weight: 400;
-    text-decoration: none;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
 }
 
 .xwVueIntro .content .rightContent{
-    width: 955px;
-    height: 100%;
     overflow-y: scroll;
-    border:1px solid #aaacaa;
+    padding-bottom: 50px;
+    flex: 1;
 }
-
+.xwVueIntro .tableContent::-webkit-scrollbar,
+.xwVueIntro .leftContent::-webkit-scrollbar,
+.xwVueIntro .rightContent::-webkit-scrollbar
+{
+    width: 3px;
+    height: 10px;
+} 
 
 
 </style>
