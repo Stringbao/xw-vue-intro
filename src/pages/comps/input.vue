@@ -49,13 +49,15 @@
                             <tr>
                                 <td>事件名称</td>
                                 <td>说明</td>
-                                <td>回调参数</td>
+                                <td>参数</td>
                             </tr>
                         </thead>
                         <tbody>
-                            <td>input</td>
-                            <td>输入</td>
-                            <td> - </td>
+                            <tr v-for="(item,idx) in events" :key="idx">
+                                <td>{{item.name}}</td>
+                                <td>{{item.desc}}</td>
+                                <td>{{item.params}}</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -97,6 +99,12 @@ export default {
                 {name:"required",desc:"是否必填",type:"boolean",required:"非必填",default:"-"},
                 {name:"vType",desc:"文本框验证类型",type:"string",required:"非必填",default:"-"},
                 {name:"msg",desc:"错误提示信息",type:"string",required:"非必填",default:"-"},
+            ],
+            events:[
+                {name:"enter",desc:"enter事件",params:"value:当前input的值"},
+                {name:"blur",desc:"blur事件",params:"value:当前input的值"},
+                {name:"change",desc:"change事件",params:"value:当前input的值"},
+                {name:"click",desc:"click事件",params:"value:当前input的值"},
             ]
         }
     },
