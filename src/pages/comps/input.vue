@@ -41,7 +41,7 @@
                     </table>
                 </div>
                 <p class="tip">
-                    tip提示 tip提示tip提示tip提示tip提示tip提示tip提示tip提示tip提示
+                    tips: on是开启验证功能，vType和msg属性只在开启on属性后生效，required为必填，on和required可以一起使用
                 </p>
             </li>
              <li>
@@ -64,9 +64,7 @@
                         </tbody>
                     </table>
                 </div>
-                <p class="tip">
-                    tip提示 tip提示tip提示tip提示tip提示tip提示tip提示tip提示tip提示
-                </p>
+                <p class="tip"></p>
             </li>
             <li>
                 <h3>方法</h3>
@@ -76,18 +74,22 @@
                             <tr>
                                 <td>方法名</td>
                                 <td>说明</td>
+                                <td>示例</td>
                                 <td>参数</td>
                             </tr>
                         </thead>
                         <tbody>
-                            <td>focus</td>
-                            <td>使input获取焦点</td>
-                            <td> - </td>
+                            <tr v-for="(item,idx) in methods" :key="idx">
+                                <td>{{item.name}}</td>
+                                <td>{{item.desc}}</td>
+                                <td>{{item.demo}}</td>
+                                <td>{{item.params}}</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
                 <p class="tip">
-                    tip提示 tip提示tip提示tip提示tip提示tip提示tip提示tip提示tip提示
+                    tip:必须要通过getCurrentComponent()来获取当前的input组件对象, 不允许直接调用方法
                 </p>
             </li>
         </ul>
@@ -104,6 +106,7 @@ export default {
                 {name:"labelWidth",desc:"label宽度",type:"Number",required:"非必填",default:"100"},
                 {name:"placeholder",desc:"placeholder",type:"string",required:"非必填",default:"-"},
                 {name:"label",desc:"label名",type:"string",required:"非必填",default:"-"},
+                {name:"tip",desc:"input输入提示信息",type:"string",required:"非必填",default:"-"},
                 {name:"on",desc:"是否开启验证",type:"boolean",required:"非必填",default:"-"},
                 {name:"required",desc:"是否必填",type:"boolean",required:"非必填",default:"-"},
                 {name:"vType",desc:"文本框验证类型",type:"string",required:"非必填",default:"-"},
@@ -114,6 +117,10 @@ export default {
                 {name:"blur",desc:"blur事件",params:"value:当前input的值"},
                 {name:"change",desc:"change事件",params:"value:当前input的值"},
                 {name:"click",desc:"click事件",params:"value:当前input的值"},
+            ],
+            methods:[
+                {name:"clear",desc:"清空文本框的值(v-model)",demo:"this.$refs['组件的ref'].getCurrentComponent().clear();",params:"-"},
+                {name:"focus",desc:"获取焦点",demo:"this.$refs['组件的ref'].getCurrentComponent().focus();",params:"-"}
             ]
         }
     },
