@@ -1,23 +1,13 @@
 <template>
-    <div class="xwVueIntro">
-        <Top></Top>
-        <div class="content">
-            <!-- 左侧 -->
-           <Left></Left>
-            <!-- 右侧 -->
-            <div class="fr rightContent">
-               <router-view></router-view>
-            </div>
-        </div>
+    <div class="hearder">
+        <div class="fl logo"><img src="../../static/images/logo.png"/></div>
+        <div class="fr version fa fa-angle-down">1.0</div>
     </div>
 </template>
 
 <script>
-import Top from "./top.vue";
-import Left from "./left.vue";
 export default {
-    name: 'Layout',
-    components:{Top,Left},
+    name: 'Top',
     data(){
         return {
             

@@ -1,30 +1,34 @@
 <template>
-    <div class="xwVueIntro">
-        <Top></Top>
-        <div class="content">
-            <!-- 左侧 -->
-           <Left></Left>
-            <!-- 右侧 -->
-            <div class="fr rightContent">
-               <router-view></router-view>
-            </div>
-        </div>
+    <div class="fl leftContent">
+        <ul>
+            <li>
+                <a class="componentTitle">组件</a>
+                <ul>
+                    <li>
+                        <a @click="goInput">Input</a>
+                        <a @click="goTextArea">TextArea</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
     </div>
 </template>
 
 <script>
-import Top from "./top.vue";
-import Left from "./left.vue";
 export default {
-    name: 'Layout',
-    components:{Top,Left},
+    name: 'Left',
     data(){
         return {
             
         }
     },
     methods:{
-        
+        goInput(){
+            this.$router.push({path:"/input"});
+        },
+        goTextArea(){
+
+        }
     }
 }
 
