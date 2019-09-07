@@ -40,6 +40,9 @@
                         </tbody>
                     </table>
                 </div>
+                <p class="tip">
+                    tip提示 tip提示tip提示tip提示tip提示tip提示tip提示tip提示tip提示
+                </p>
             </li>
              <li>
                 <h3>事件</h3>
@@ -59,6 +62,9 @@
                         </tbody>
                     </table>
                 </div>
+                <p class="tip">
+                    tip提示 tip提示tip提示tip提示tip提示tip提示tip提示tip提示tip提示
+                </p>
             </li>
             <li>
                 <h3>方法</h3>
@@ -78,6 +84,9 @@
                         </tbody>
                     </table>
                 </div>
+                <p class="tip">
+                    tip提示 tip提示tip提示tip提示tip提示tip提示tip提示tip提示tip提示
+                </p>
             </li>
         </ul>
     </div>
@@ -146,6 +155,13 @@ export default {
     line-height: 40px;
 }
 
+.detailContent p.tip {
+    font-size: 12px;
+    color: #b8babd;
+    line-height: 20px;
+    margin: 5px 0;
+}
+
 .detailContent .tableContent {
     width: 100%;
     overflow-y:scroll; 
@@ -157,6 +173,10 @@ export default {
     border-collapse: collapse;
     border:1px solid red;
     table-layout: fixed;
+}
+
+.detailContent .attributesTable thead{
+    background-color: #ebebeb;
 }
 
 .detailContent .attributesTable th,td{
