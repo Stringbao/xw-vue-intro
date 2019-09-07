@@ -54,8 +54,17 @@ export default {
 .xwVueIntro{
     width: 100%;
     height: 100%;
+    display: -webkit-box; 
+    display: -moz-box;
+    display: -ms-flexbox; 
+    display: -webkit-flex;
     display: flex;
-    flex-direction:column;
+    -webkit-box-direction: column;
+    -webkit-box-orient: column;
+    -moz-flex-direction: column;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+
 }
 
 .xwVueIntro .hearder{
@@ -95,8 +104,17 @@ export default {
     width: 1200px;
     height: 100%;
     margin: 0 auto;
+    display: -webkit-box; 
+    display: -moz-box;
+    display: -ms-flexbox; 
+    display: -webkit-flex;
     display: flex;
+     -webkit-box-direction: row;
+    -webkit-box-orient: row;
+    -moz-flex-direction: row;
+    -webkit-flex-direction: row;
     flex-direction: row;
+    overflow-y: scroll;
 }
 
 .xwVueIntro .content .rightContent{
