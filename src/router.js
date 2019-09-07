@@ -3,6 +3,7 @@ import Router from 'vue-router';
 
 const Layout = r=>require.ensure([],()=>r(require("./pages/layout/layout.vue")),"Layout");
 const Input = r=>require.ensure([],()=>r(require("./pages/comps/input.vue")),"Input");
+const Textarea = r=>require.ensure([],()=>r(require("./pages/comps/textarea.vue")),"Textarea");
 
 Vue.use(Router);
 
@@ -16,6 +17,11 @@ const routers = [
                 path: '/input',
                 name: 'input',
                 component: Input
+            },
+            {
+                path: '/textarea',
+                name: 'textarea',
+                component: Textarea
             }
         ]
     }

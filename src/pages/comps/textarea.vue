@@ -1,19 +1,19 @@
 <template>
     <div class="detailContent">
-        <h2>Input 文本框</h2>
+        <h2>Textarea</h2>
         <ul>
             <li>
                 <h3>说明</h3>
                 <div>
                     <p class="instructions">
-                        &lt;le-input&gt;文本框，使用v-model进行数据的绑定
+                        &lt;le-textarea&gt; 使用v-model进行数据的绑定
                     </p>
                 </div>
             </li>
             <li>
                 <h3>基础用法</h3>
                 <div class="info">
-                    &lt;le-input labelWidth="150" placeholder="请输入年龄" label="年龄" v-model="age"&gt;&lt;le-input&gt;
+                    &lt;le-textarea tip="详细信息tip" labelWidth='150' placeholder="请输入地址" label="详细地址" :readonly="readonly" msg="地址必填" v-model="content" on"&gt;&lt;le-textarea&gt;
                 </div>
             </li>
             <li>
@@ -107,7 +107,6 @@ export default {
                 {name:"placeholder",desc:"placeholder",type:"string",required:"非必填",default:"-"},
                 {name:"label",desc:"label名",type:"string",required:"非必填",default:"-"},
                 {name:"tip",desc:"input输入提示信息",type:"string",required:"非必填",default:"-"},
-                {name:"readonly",desc:"是否只读",type:"boolean",required:"非必填",default:"false"},
                 {name:"on",desc:"是否开启验证",type:"boolean",required:"非必填",default:"-"},
                 {name:"required",desc:"是否必填",type:"boolean",required:"非必填",default:"-"},
                 {name:"vType",desc:"文本框验证类型",type:"string",required:"非必填",default:"-"},

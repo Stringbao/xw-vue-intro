@@ -27,7 +27,7 @@ export default {
             this.$router.push({path:"/input"});
         },
         goTextArea(){
-
+            this.$router.push({path:"/textarea"});
         }
     }
 }
