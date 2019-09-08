@@ -134,7 +134,7 @@ module.exports = (env = {}) =>{
             hints: false
         },
         plugins:plugins,
-        // devtool: '#eval-source-map'//开发模式下更方便定位错误
-        devtool:env.Generative?false:'#eval-source-map'
+        devtool: '#eval-source-map'//开发模式下更方便定位错误
+        // devtool:env.Generative?false:'#eval-source-map'
     }
 }
