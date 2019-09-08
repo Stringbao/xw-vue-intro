@@ -8,20 +8,20 @@ let comps = {
         info:{
             propertys:{
                 key:"属性",
-                tips:"tips: on是开启验证功能，vType和msg属性只在开启on属性后生效，required为必填，on和required可以一起使用",
+                tips:"on是开启验证功能，vType和msg属性只在开启on属性后生效，required为必填，on和required可以一起使用",
                 cols:[
                     {name:"name",val:"参数"},{name:"desc",val:"说明"},{name:"type",val:"类型"},
                     {name:"required",val:"可选值"},{name:"default",val:"默认值"}
                 ],
                 data:[
-                    {name:"v-model",desc:"绑定字段",type:"任意",required:"必填",default:"-"},
+                    {name:"v-model",desc:"绑定字段",type:"String",required:"必填",default:"-"},
                     {name:"labelWidth",desc:"label宽度",type:"Number",required:"非必填",default:"100"},
                     {name:"placeholder",desc:"placeholder",type:"String",required:"非必填",default:"-"},
                     {name:"label",desc:"label名",type:"String",required:"非必填",default:"-"},
                     {name:"tip",desc:"input输入提示信息",type:"String",required:"非必填",default:"-"},
-                    {name:"readonly",desc:"是否只读",type:"boolean",required:"非必填",default:"false"},
-                    {name:"on",desc:"是否开启验证",type:"boolean",required:"非必填",default:"false"},
-                    {name:"required",desc:"是否必填",type:"boolean",required:"非必填",default:"false"},
+                    {name:"readonly",desc:"是否只读",type:"Boolean",required:"非必填",default:"false"},
+                    {name:"on",desc:"是否开启验证",type:"Boolean",required:"非必填",default:"false"},
+                    {name:"required",desc:"是否必填",type:"Boolean",required:"非必填",default:"false"},
                     {name:"vType",desc:"文本框验证类型",type:"String",required:"非必填",default:"-"},
                     {name:"msg",desc:"错误提示信息",type:"String",required:"非必填",default:"-"},
                 ]
@@ -41,7 +41,7 @@ let comps = {
             },
             methods:{
                 key:"方法",
-                tips:"必须要通过getCurrentComponent()来获取当前的input组件对象, 不允许直接调用方法",
+                tips:"必须要通过getCurrentComponent()来获取当前的组件对象, 不允许直接调用方法",
                 cols:[
                     {name:"name",val:"方法名称"},{name:"desc",val:"方法描述"},{name:"demo",val:"示例"},{name:"params",val:"参数"}
                 ],
@@ -55,27 +55,27 @@ let comps = {
     textarea:{
         route:{path:"textarea",name:"textarea",route:"/textarea",cls:""},
         name:"Textarea",
-        type:"Textarea",
+        type:"textarea",
         desc:"<le-textarea>文本框，使用v-model进行数据的绑定",
         baseInfo:'<le-textarea placeholder="请输入详细地址" label="详细地址" v-model="content"></le-textarea>',
         info:{
             propertys:{
                 key:"属性",
-                tips:"tips: 除了input需要required, 其他组件都不需要required属性，开启on表示必填",
+                tips:"除了input需要required, 其他组件都不需要required属性，开启on表示必填",
                 cols:[
                     {name:"name",val:"参数"},{name:"desc",val:"说明"},{name:"type",val:"类型"},
                     {name:"required",val:"可选值"},{name:"default",val:"默认值"}
                 ],
                 data:[
-                    {name:"v-model",desc:"绑定字段",type:"任意",required:"必填",default:"-"},
+                    {name:"v-model",desc:"绑定字段",type:"String",required:"必填",default:"-"},
                     {name:"labelWidth",desc:"label宽度",type:"Number",required:"非必填",default:"100"},
                     {name:"placeholder",desc:"placeholder",type:"String",required:"非必填",default:"-"},
                     {name:"label",desc:"label名",type:"String",required:"非必填",default:"-"},
                     {name:"tip",desc:"输入提示信息",type:"String",required:"非必填",default:"-"},
                     {name:"width",desc:"宽度,支持百分比和纯数字",type:"String",required:"非必填",default:"100%"},
                     {name:"height",desc:"高度,支持百分比和纯数字",type:"String",required:"非必填",default:"100px"},
-                    {name:"readonly",desc:"是否只读",type:"boolean",required:"非必填",default:"false"},
-                    {name:"on",desc:"是否开启验证",type:"boolean",required:"非必填",default:"false"},
+                    {name:"readonly",desc:"是否只读",type:"Boolean",required:"非必填",default:"false"},
+                    {name:"on",desc:"是否开启验证",type:"Boolean",required:"非必填",default:"false"},
                     {name:"msg",desc:"错误提示信息",type:"String",required:"非必填",default:"-"},
                 ]
             },
@@ -92,7 +92,7 @@ let comps = {
             },
             methods:{
                 key:"方法",
-                tips:"必须要通过getCurrentComponent()来获取当前的input组件对象, 不允许直接调用方法",
+                tips:"必须要通过getCurrentComponent()来获取当前的组件对象, 不允许直接调用方法",
                 cols:[
                     {name:"name",val:"方法名称"},{name:"desc",val:"方法描述"},{name:"demo",val:"示例"},{name:"params",val:"参数"}
                 ],
@@ -102,11 +102,56 @@ let comps = {
             }
         }
     },
+    alert:{
+        route:{path:"alert",name:"alert",route:"/alert",cls:""},
+        name:"Alert",
+        type:"alert",
+        desc:"全局注册Vue的方法,包含this.alert.showAlert/showConfirm/showNotify",
+        baseInfo:'this.alert.showAlert, this.alert.showConfirm, this.alert.showNotify',
+        info:{
+            propertys:{
+                key:"属性",
+                tips:"showAlert, showNotify需要接受2个参数,第一个参数为提示类型(success,info,error), 第二个参数为提示消息，showConfirm的第一个参数为提示title，第二个参数为点击确定的callback回调",
+                cols:[
+                    {name:"name",val:"参数"},{name:"desc",val:"说明"},{name:"type",val:"类型"},
+                    {name:"required",val:"可选值"},{name:"default",val:"默认值"}
+                ],
+                data:[
+                    {name:"type",desc:"消息类型(success,info,error)(showAlert,showNotify使用)",type:"String",required:"必填",default:"-"},
+                    {name:"msg",desc:"消息内容(showAlert,showNotify使用)",type:"String",required:"必填",default:"-"},
+                    {name:"title",desc:"confirm的提示标题(只针对showConfirm使用)",type:"String",required:"必填",default:"-"},
+                    {name:"cb",desc:"只针对showConfirm,点击确定的回调(只针对showConfirm使用)",type:"Functon",required:"必填",default:"-"}
+                ]
+            },
+            events:{
+                key:"事件",
+                tips:"",
+                cols:[
+                    {name:"name",val:"事件名称"},{name:"desc",val:"事件描述"},{name:"params",val:"参数"},
+                ],
+                data:[
+                    
+                ]
+            },
+            methods:{
+                key:"方法",
+                tips:"showAlert, showNotify需要接受2个参数,第一个参数为提示类型(success,info,error), 第二个参数为提示消息，showConfirm的第一个参数为提示title，第二个参数为点击确定的callback回调",
+                cols:[
+                    {name:"name",val:"方法名称"},{name:"desc",val:"方法描述"},{name:"demo",val:"示例"},{name:"params",val:"参数"}
+                ],
+                data:[
+                    {name:"showAlert",desc:"常规提示信息",demo:"this.alert.showAlert('success','成功');",params:"-"},
+                    {name:"showConfirm",desc:"confirm提示，必须带回调",demo:"this.alert.showConfirm('提示信息',()=>{todo});",params:"-"},
+                    {name:"showNotify需要接受2个参数",desc:"亮眼的提示信息",demo:"this.alert.showNotify需要接受2个参数('success','成功');",params:"-"},
+                ]
+            }
+        }
+    },
     button:{
         route:{path:"button",name:"button",route:"/button",cls:""},
         name:"Button",
         type:"Button",
-        desc:"<le-button>文本框，使用@click进行事件的绑定",
+        desc:"<le-button>按钮，使用@click进行事件的绑定",
         baseInfo:'<le-button value="确定" type="save" @click="save"></le-button>',
         info:{
             propertys:{
@@ -119,7 +164,7 @@ let comps = {
                 data:[
                     {name:"type",desc:"button的类型(icon)",type:"String",required:"非必填",default:"default"},
                     {name:"value",desc:"button显示的名字",type:"String",required:"非必填",default:"-"},
-                    {name:"disabled",desc:"是否禁用button",type:"boolean",required:"非必填",default:"false"}
+                    {name:"disabled",desc:"是否禁用button",type:"Boolean",required:"非必填",default:"false"}
                 ]
             },
             events:{
@@ -148,12 +193,12 @@ let comps = {
         route:{path:"checkbox",name:"checkbox",route:"/checkbox",cls:""},
         name:"Checkbox 复选框",
         type:"checkbox",
-        desc:"<le-checkbox>文本框, 使用v-model进行数据的绑定, data-source进行数据源的绑定",
+        desc:"<le-checkbox>复选框, 使用v-model进行数据的绑定, data-source进行数据源的绑定",
         baseInfo:'<le-checkbox-list on label="爱好" :data-source="fav" display-name="name" display-value="code" v-model="fav"></le-checkbox-list>',
         info:{
             propertys:{
                 key:"属性",
-                tips:"tips: on开启验证功能(无需required), display-name显示字段, display-value传值字段",
+                tips:"on开启验证功能(无需required), display-name显示字段, display-value传值字段",
                 cols:[
                     {name:"name",val:"参数"},{name:"desc",val:"说明"},{name:"type",val:"类型"},
                     {name:"required",val:"可选值"},{name:"default",val:"默认值"}
@@ -166,8 +211,8 @@ let comps = {
                     {name:"labelWidth",desc:"label宽度",type:"Number",required:"非必填",default:"100"},
                     {name:"label",desc:"label名",type:"String",required:"非必填",default:"-"},
                     {name:"tip",desc:"input输入提示信息",type:"String",required:"非必填",default:"-"},
-                    {name:"readonly",desc:"是否只读",type:"boolean",required:"非必填",default:"false"},
-                    {name:"on",desc:"是否开启验证",type:"boolean",required:"非必填",default:"false"},
+                    {name:"readonly",desc:"是否只读",type:"Boolean",required:"非必填",default:"false"},
+                    {name:"on",desc:"是否开启验证",type:"Boolean",required:"非必填",default:"false"},
                 ]
             },
             events:{
@@ -191,7 +236,585 @@ let comps = {
                 ]
             }
         }
-    }
+    },
+    radio:{
+        route:{path:"radio",name:"radio",route:"/radio",cls:""},
+        name:"Radio 复选框",
+        type:"radio",
+        desc:"<le-radio-list>单选框, 使用v-model进行数据的绑定, data-source进行数据源的绑定",
+        baseInfo:'<le-radio-list on label="爱好" :data-source="fav" display-name="name" display-value="code" v-model="fav"></le-radio-list>',
+        info:{
+            propertys:{
+                key:"属性",
+                tips:"on开启验证功能(无需required), display-name显示字段, display-value传值字段",
+                cols:[
+                    {name:"name",val:"参数"},{name:"desc",val:"说明"},{name:"type",val:"类型"},
+                    {name:"required",val:"可选值"},{name:"default",val:"默认值"}
+                ],
+                data:[
+                    {name:"v-model",desc:"绑定字段",type:"String",required:"必填",default:"-"},
+                    {name:"displayName",desc:"显示字段",type:"String",required:"必填",default:"-"},
+                    {name:"displayValue",desc:"传值字段",type:"String",required:"必填",default:"-"},
+                    {name:"dataSource",desc:"数据源",type:"Array",required:"必填",default:"[]"},
+                    {name:"labelWidth",desc:"label宽度",type:"Number",required:"非必填",default:"100"},
+                    {name:"label",desc:"label名",type:"String",required:"非必填",default:"-"},
+                    {name:"tip",desc:"input输入提示信息",type:"String",required:"非必填",default:"-"},
+                    {name:"readonly",desc:"是否只读",type:"Boolean",required:"非必填",default:"false"},
+                    {name:"on",desc:"是否开启验证",type:"Boolean",required:"非必填",default:"false"},
+                ]
+            },
+            events:{
+                key:"事件",
+                tips:"",
+                cols:[
+                    {name:"name",val:"事件名称"},{name:"desc",val:"事件描述"},{name:"params",val:"参数"},
+                ],
+                data:[
+                    {name:"change",desc:"change事件",params:"当前input的值, 逗号分隔字符串"},
+                ]
+            },
+            methods:{
+                key:"方法",
+                tips:"",
+                cols:[
+                    {name:"name",val:"方法名称"},{name:"desc",val:"方法描述"},{name:"demo",val:"示例"},{name:"params",val:"参数"}
+                ],
+                data:[
+
+                ]
+            }
+        }
+    },
+    datePicker:{
+        route:{path:"datePicker",name:"datePicker",route:"/datePicker",cls:""},
+        name:"DatePicker 日期选择器",
+        type:"datePicker",
+        desc:"<le-date-picker>日期组件，使用v-model进行数据的绑定",
+        baseInfo:'<le-date-picker label="日期组件" v-model="entity.date"></le-date-picker>',
+        info:{
+            propertys:{
+                key:"属性",
+                tips:"使用v-model进行值绑定",
+                cols:[
+                    {name:"name",val:"参数"},{name:"desc",val:"说明"},{name:"type",val:"类型"},
+                    {name:"required",val:"可选值"},{name:"default",val:"默认值"}
+                ],
+                data:[
+                    {name:"v-model",desc:"绑定字段",type:"String",required:"必填",default:"-"},
+                    {name:"labelWidth",desc:"label宽度",type:"Number",required:"非必填",default:"100"},
+                    {name:"placeholder",desc:"placeholder",type:"String",required:"非必填",default:"-"},
+                    {name:"label",desc:"label名",type:"String",required:"非必填",default:"-"},
+                    {name:"tip",desc:"输入提示信息",type:"String",required:"非必填",default:"-"},
+                    {name:"readonly",desc:"是否只读",type:"Boolean",required:"非必填",default:"false"},
+                    {name:"on",desc:"是否开启验证",type:"Boolean",required:"非必填",default:"false"},
+                    {name:"msg",desc:"错误提示信息",type:"String",required:"非必填",default:"-"},
+                ]
+            },
+            events:{
+                key:"事件",
+                tips:"",
+                cols:[
+                    {name:"name",val:"事件名称"},{name:"desc",val:"事件描述"},{name:"params",val:"参数"},
+                ],
+                data:[
+                    {name:"change",desc:"日期发送变化时候的change事件",params:"value:当前值"},
+                    {name:"pervYearChange",desc:"上一年change事件",params:"year:所选年份,month:当前月份,str:当前选中日期"},
+                    {name:"nextYearChange",desc:"下一年change事件",params:"year:所选年份,month:当前月份,str:当前选中日期"},
+                    {name:"pervMonthChange",desc:"上一月change事件",params:"year:当前月份,month:所选月份,str:当前选中日期"},
+                    {name:"nextMonthChange",desc:"下一月change事件",params:"year:当前月份,month:所选月份,str:当前选中日期"}
+                ]
+            },
+            methods:{
+                key:"方法",
+                tips:"",
+                cols:[
+                    {name:"name",val:"方法名称"},{name:"desc",val:"方法描述"},{name:"demo",val:"示例"},{name:"params",val:"参数"}
+                ],
+                data:[
+
+                ]
+            }
+        }
+    },
+    timePicker:{
+        route:{path:"timePicker",name:"timePicker",route:"/timePicker",cls:""},
+        name:"TimePicker 时间选择器",
+        type:"timePicker",
+        desc:"<le-time-picker>时间组件，使用v-model进行数据的绑定",
+        baseInfo:'<le-time-picker label="选择时间" v-model="entity.time"></le-time-picker>',
+        info:{
+            propertys:{
+                key:"属性",
+                tips:"使用v-model进行值绑定",
+                cols:[
+                    {name:"name",val:"参数"},{name:"desc",val:"说明"},{name:"type",val:"类型"},
+                    {name:"required",val:"可选值"},{name:"default",val:"默认值"}
+                ],
+                data:[
+                    {name:"v-model",desc:"绑定字段",type:"String",required:"必填",default:"-"},
+                    {name:"labelWidth",desc:"label宽度",type:"Number",required:"非必填",default:"100"},
+                    {name:"placeholder",desc:"placeholder",type:"String",required:"非必填",default:"-"},
+                    {name:"label",desc:"label名",type:"String",required:"非必填",default:"-"},
+                    {name:"tip",desc:"输入提示信息",type:"String",required:"非必填",default:"-"},
+                    {name:"readonly",desc:"是否只读",type:"Boolean",required:"非必填",default:"false"},
+                    {name:"on",desc:"是否开启验证",type:"Boolean",required:"非必填",default:"false"},
+                    {name:"msg",desc:"错误提示信息",type:"String",required:"非必填",default:"-"},
+                ]
+            },
+            events:{
+                key:"事件",
+                tips:"",
+                cols:[
+                    {name:"name",val:"事件名称"},{name:"desc",val:"事件描述"},{name:"params",val:"参数"},
+                ],
+                data:[
+                    {name:"change",desc:"时间发送变化时候的change事件",params:"value:当前值"}
+                ]
+            },
+            methods:{
+                key:"方法",
+                tips:"",
+                cols:[
+                    {name:"name",val:"方法名称"},{name:"desc",val:"方法描述"},{name:"demo",val:"示例"},{name:"params",val:"参数"}
+                ],
+                data:[
+
+                ]
+            }
+        }
+    },
+    dateTimePicker:{
+        route:{path:"dateTimePicker",name:"dateTimePicker",route:"/dateTimePicker",cls:""},
+        name:"DateTimePicker 时间选择器",
+        type:"dateTimePicker",
+        desc:"<le-date-time-picker>时间日期组件，使用v-model进行数据的绑定",
+        baseInfo:'<le-date-time-picker label="时间日期组件" v-model="entity.datetime"></le-date-time-picker>',
+        info:{
+            propertys:{
+                key:"属性",
+                tips:"使用v-model进行值绑定",
+                cols:[
+                    {name:"name",val:"参数"},{name:"desc",val:"说明"},{name:"type",val:"类型"},
+                    {name:"required",val:"可选值"},{name:"default",val:"默认值"}
+                ],
+                data:[
+                    {name:"v-model",desc:"绑定字段",type:"String",required:"必填",default:"-"},
+                    {name:"labelWidth",desc:"label宽度",type:"Number",required:"非必填",default:"100"},
+                    {name:"placeholder",desc:"placeholder",type:"String",required:"非必填",default:"-"},
+                    {name:"label",desc:"label名",type:"String",required:"非必填",default:"-"},
+                    {name:"tip",desc:"输入提示信息",type:"String",required:"非必填",default:"-"},
+                    {name:"readonly",desc:"是否只读",type:"Boolean",required:"非必填",default:"false"},
+                    {name:"on",desc:"是否开启验证",type:"Boolean",required:"非必填",default:"false"},
+                    {name:"msg",desc:"错误提示信息",type:"String",required:"非必填",default:"-"},
+                ]
+            },
+            events:{
+                key:"事件",
+                tips:"",
+                cols:[
+                    {name:"name",val:"事件名称"},{name:"desc",val:"事件描述"},{name:"params",val:"参数"},
+                ],
+                data:[
+                    {name:"change",desc:"时间发送变化时候的change事件",params:"value:当前值"}
+                ]
+            },
+            methods:{
+                key:"方法",
+                tips:"",
+                cols:[
+                    {name:"name",val:"方法名称"},{name:"desc",val:"方法描述"},{name:"demo",val:"示例"},{name:"params",val:"参数"}
+                ],
+                data:[
+
+                ]
+            }
+        }
+    },
+    dialog:{
+        route:{path:"dialog",name:"dialog",route:"/dialog",cls:""},
+        name:"dialog弹出层",
+        type:"dialog",
+        desc:"<le-dialog>弹出层，使用v-model进行隐藏和显示",
+        baseInfo:'<le-dialog title="新建弹层" height="605" width="1000" v-model="showDialog">',
+        info:{
+            propertys:{
+                key:"属性",
+                tips:"使用v-model进行值绑定，width & height必须为数字",
+                cols:[
+                    {name:"name",val:"参数"},{name:"desc",val:"说明"},{name:"type",val:"类型"},
+                    {name:"required",val:"可选值"},{name:"default",val:"默认值"}
+                ],
+                data:[
+                    {name:"v-model",desc:"绑定字段",type:"String",required:"必填",default:"-"},
+                    {name:"width",desc:"宽度",type:"Number",required:"非必填",default:"700"},
+                    {name:"height",desc:"高度",type:"Number",required:"非必填",default:"300"},
+                    {name:"title",desc:"label名",type:"String",required:"非必填",default:"-"},
+                ]
+            },
+            events:{
+                key:"事件",
+                tips:"closeCallback回调函数必须配置",
+                cols:[
+                    {name:"name",val:"事件名称"},{name:"desc",val:"事件描述"},{name:"params",val:"参数"},
+                ],
+                data:[
+                    {name:"closeCallback",desc:"关闭的回调函数,",params:"-"}
+                ]
+            },
+            methods:{
+                key:"方法",
+                tips:"",
+                cols:[
+                    {name:"name",val:"方法名称"},{name:"desc",val:"方法描述"},{name:"demo",val:"示例"},{name:"params",val:"参数"}
+                ],
+                data:[
+
+                ]
+            }
+        }
+    },
+    editor:{
+        route:{path:"editor",name:"editor",route:"/editor",cls:""},
+        name:"editor富文本编辑器",
+        type:"editor",
+        desc:"<le-dialog>弹出层，使用v-model进行隐藏和显示",
+        baseInfo:'<le-editor label="pc端:" :option="editorOption" ref="pcEditor"></le-editor>',
+        info:{
+            propertys:{
+                key:"属性",
+                tips:"配置ref, 必须要通过getCurrentComponent()来获取组件对象,editorOption里面的url为上传文件url，fname为上传问题服务器接收的key，analysis表示解析服务端返回结果的函数，是一个服务端返回的图片绝对路径",
+                cols:[
+                    {name:"name",val:"参数"},{name:"desc",val:"说明"},{name:"type",val:"类型"},
+                    {name:"required",val:"可选值"},{name:"default",val:"默认值"}
+                ],
+                data:[
+                    {name:"option",desc:"配置图片上传,editorOption:{url:'/file/img/upload',fname:'file',analysis:(d)=>{return d.data.data;}",type:"JSON",required:"必填",default:"-"},
+                    {name:"ref",desc:"组件key,不允许重复",type:"String",required:"必填",default:"-"},
+                    {name:"labelWidth",desc:"label宽度",type:"Number",required:"非必填",default:"100"},
+                    {name:"label",desc:"label名",type:"String",required:"非必填",default:"-"},
+                    {name:"tip",desc:"输入提示信息",type:"String",required:"非必填",default:"-"},
+                    {name:"on",desc:"是否开启验证",type:"Boolean",required:"非必填",default:"false"},
+                    {name:"msg",desc:"错误提示信息",type:"String",required:"非必填",default:"-"}
+                ]
+            },
+            events:{
+                key:"事件",
+                tips:"change, blur事件的参数为html源码, 是否允许text，有待测试",
+                cols:[
+                    {name:"name",val:"事件名称"},{name:"desc",val:"事件描述"},{name:"params",val:"参数"},
+                ],
+                data:[
+                    {name:"change",desc:"change事件",params:"value:html源码"},
+                    {name:"blur",desc:"blur事件",params:"value:html源码"}
+                ]
+            },
+            methods:{
+                key:"方法",
+                tips:"必须通过getCurrentComponent访问当前组件对象",
+                cols:[
+                    {name:"name",val:"方法名称"},{name:"desc",val:"方法描述"},{name:"demo",val:"示例"},{name:"params",val:"参数"}
+                ],
+                data:[
+                    {name:"setValue",desc:"设置值",demo:"this.$refs['组件的ref'].getCurrentComponent().setValue;",params:"value:要传递的值"},
+                    {name:"getValue",desc:"获取html代码",demo:"this.$refs['组件的ref'].getCurrentComponent().getValue;",params:"-"},
+                    {name:"getText",desc:"获取文本值",demo:"this.$refs['组件的ref'].getCurrentComponent().getText;",params:"-"},
+                ]
+            }
+        }
+    },
+    form:{
+        route:{path:"form",name:"form",route:"/form",cls:""},
+        name:"Form表单提交",
+        type:"form",
+        desc:"<le-input>文本框，使用v-model进行数据的绑定",
+        baseInfo:'<le-form labelWidth="180" ref="saveForm" style="width:800px;margin:0 auto">',
+        info:{
+            propertys:{
+                key:"属性",
+                tips:"form表单的style必须给一个初始值,表示form表单的宽度???能否跟着容器宽度走，居中对齐？？？",
+                cols:[
+                    {name:"name",val:"参数"},{name:"desc",val:"说明"},{name:"type",val:"类型"},
+                    {name:"required",val:"可选值"},{name:"default",val:"默认值"}
+                ],
+                data:[
+                    {name:"ref",desc:"组件key,如果需要表单验证功能则必须加上ref属性",type:"String",required:"非必填",default:"-"},
+                    {name:"labelWidth",desc:"form组件下面所有组件的label宽度",type:"Number",required:"非必填",default:"-"},
+                ]
+            },
+            events:{
+                key:"事件",
+                tips:"",
+                cols:[
+                    {name:"name",val:"事件名称"},{name:"desc",val:"事件描述"},{name:"params",val:"参数"},
+                ],
+                data:[
+                   
+                ]
+            },
+            methods:{
+                key:"方法",
+                tips:"reset方法是先执行组件内部重弄写的reset方法，如果没有就会去执行HOC内部透传下来的reset方法,validate方法返回一个Promise对象",
+                cols:[
+                    {name:"name",val:"方法名称"},{name:"desc",val:"方法描述"},{name:"demo",val:"示例"},{name:"params",val:"参数"}
+                ],
+                data:[
+                    {name:"validate",desc:"表达验证方法",demo:"this.$refs['组件的ref'].validate();",params:"-"},
+                    {name:"reset",desc:"设置form表单所有子组件的出厂状态,包含:v-model, 验证错误信息, 验证错误css以及部分组件数据源",demo:"this.$refs['组件的ref'].reset();",params:"-"}
+                ]
+            }
+        }
+    },
+    select:{
+        route:{path:"select",name:"select",route:"/select",cls:""},
+        name:"Select 下拉框",
+        type:"select",
+        desc:"<le-checkbox>复选框, 使用v-model进行数据的绑定, data-source进行数据源的绑定",
+        baseInfo:'<le-local-select label="选择职业" :data-source="shops" display-name="val" display-value="key" v-model="job"></le-local-select>',
+        info:{
+            propertys:{
+                key:"属性",
+                tips:"on开启验证功能(无需required), display-name显示字段, display-value传值字段,data-source数据源,如果手动设置数据源为[],那么当前组件的v-model也会清空",
+                cols:[
+                    {name:"name",val:"参数"},{name:"desc",val:"说明"},{name:"type",val:"类型"},
+                    {name:"required",val:"可选值"},{name:"default",val:"默认值"}
+                ],
+                data:[
+                    {name:"v-model",desc:"select绑定字段",type:"String",required:"必填",default:"-"},
+                    {name:"enabledInput",desc:"是否允许模糊查询",type:"Boolean",required:"非必填",default:"false"},
+                    {name:"multiple",desc:"是否允许多选",type:"Boolean",required:"非必填",default:"false"},
+                    {name:"displayName",desc:"显示字段",type:"String",required:"必填",default:"-"},
+                    {name:"displayValue",desc:"传值字段",type:"String",required:"必填",default:"-"},
+                    {name:"dataSource",desc:"数据源",type:"Array",required:"必填",default:"[]"},
+                    {name:"labelWidth",desc:"label宽度",type:"Number",required:"非必填",default:"100"},
+                    {name:"label",desc:"label名",type:"String",required:"非必填",default:"-"},
+                    {name:"tip",desc:"input输入提示信息",type:"String",required:"非必填",default:"-"},
+                    {name:"readonly",desc:"是否只读",type:"Boolean",required:"非必填",default:"false"},
+                    {name:"on",desc:"是否开启验证",type:"Boolean",required:"非必填",default:"false"},
+                ]
+            },
+            events:{
+                key:"事件",
+                tips:"",
+                cols:[
+                    {name:"name",val:"事件名称"},{name:"desc",val:"事件描述"},{name:"params",val:"参数"},
+                ],
+                data:[
+                    {name:"change",desc:"change事件",params:"当前选中的值,如果是多个，那么是以逗号分隔的字符串"},
+                ]
+            },
+            methods:{
+                key:"方法",
+                tips:"",
+                cols:[
+                    {name:"name",val:"方法名称"},{name:"desc",val:"方法描述"},{name:"demo",val:"示例"},{name:"params",val:"参数"}
+                ],
+                data:[
+
+                ]
+            }
+        }
+    },
+    table:{
+        route:{path:"table",name:"table",route:"/table",cls:""},
+        name:"带分页的TableList",
+        type:"table",
+        desc:"<table-list>分页Table组件,具有loading以及防止在数据渲染完毕之前，发送多次请求的功能，没有数据的时候展示[暂无数据]的友好体验",
+        baseInfo:'<table-list title="黑名单列表" ref="black_list_table" :options="tableOptions"></table-list>',
+        info:{
+            propertys:{
+                key:"属性",
+                tips:"getUrl函数可以控制table是否发送请求，如果getUrl返回为空字符串，那么table组件将不会发送请求",
+                cols:[
+                    {name:"name",val:"参数"},{name:"desc",val:"说明"},{name:"type",val:"类型"},
+                    {name:"required",val:"可选值"},{name:"default",val:"默认值"}
+                ],
+                data:[
+                    {name:"title",desc:"table名字",type:"String",required:"非必填",default:"未设置Table名称"},
+                    {name:"ref",desc:"table组件key",type:"String",required:"必填",default:"-"},
+                    {name:"---options---",desc:"以下row全部为options的属性",type:"JSON",required:"必填",default:"-"},
+                    {name:"showCk",desc:"是否显示checkbox",type:"Boolean",required:"非必填",default:"false"},
+                    {name:"singleSelected",desc:"是否显示radio, 要使用这个属性性必须配置showCk",type:"Boolean",required:"非必填",default:"false"},
+                    {name:"map",desc:"返回数据源的列的映射",type:"Array",required:"必填",default:"-"},
+                    {name:"getUrl",desc:"返回请求服务器的url",type:"Function",required:"必填",default:"-"},
+                    {name:"pageOption",desc:"分页属性参数",type:"JSON",required:"必填",default:"-"},
+                    {name:"actions",desc:"每行row的左侧操作按钮,传递2个参数(key,row)，支持convert(必须return值)和action函数",type:"Array",required:"必填",default:"-"}
+                ]
+            },
+            events:{
+                key:"事件",
+                tips:"",
+                cols:[
+                    {name:"name",val:"事件名称"},{name:"desc",val:"事件描述"},{name:"params",val:"参数"},
+                ],
+                data:[
+                ]
+            },
+            methods:{
+                key:"方法",
+                tips:"",
+                cols:[
+                    {name:"name",val:"方法名称"},{name:"desc",val:"方法描述"},{name:"demo",val:"示例"},{name:"params",val:"参数"}
+                ],
+                data:[
+                    {name:"search",desc:"索引初始化的table查询",demo:"this.$refs['组件的ref'].search();",params:"-"},
+                    {name:"searchCurrentIndex",desc:"当前索引的查询",demo:"this.$refs['组件的ref'].searchCurrentIndex();",params:"-"},
+                ]
+            }
+        }
+    },
+    upload:{
+        route:{path:"upload",name:"upload",route:"/upload",cls:""},
+        name:"Upload上传组件",
+        type:"upload",
+        desc:"<le-input>文本框，使用v-model进行数据的绑定",
+        baseInfo:'<le-upload :options="imgUploadOpt" v-model="entity.pcCoverImg"></le-upload>',
+        info:{
+            propertys:{
+                key:"属性",
+                tips:"upload组件允许设置单个或者多个文件/图片上传,可以控制规格(只针对图片),文件大小，文件类型",
+                cols:[
+                    {name:"name",val:"参数"},{name:"desc",val:"说明"},{name:"type",val:"类型"},
+                    {name:"required",val:"可选值"},{name:"default",val:"默认值"}
+                ],
+                data:[
+                    {name:"v-model",desc:"绑定字段",type:"String",required:"必填",default:"-"},
+                    {name:"labelWidth",desc:"label宽度",type:"Number",required:"非必填",default:"100"},
+                    {name:"label",desc:"label名",type:"String",required:"非必填",default:"-"},
+                    {name:"readonly",desc:"是否只读",type:"Boolean",required:"非必填",default:"false"},
+                    {name:"on",desc:"是否开启验证",type:"Boolean",required:"非必填",default:"false"},
+                    {name:"msg",desc:"错误提示信息",type:"String",required:"非必填",default:"-"},
+                    {name:"---options---",desc:"options所有配置如下:",type:"JSON",required:"必填",default:"-"},
+                    {name:"multiple",desc:"是否允许多文件上传",type:"Boolean",required:"非必填",default:"false"},
+                    {name:"url",desc:"请求url",type:"String",required:"必填",default:"-"},
+                    {name:"vtype",desc:"上传文件类型,逗号分割",type:"String",required:"非必填",default:"-"},
+                    {name:"fname",desc:"服务器上传标识key",type:"String",required:"必填",default:"-"},
+                    {name:"analysis",desc:"返回路径解析函数, 必须return路径",type:"Function",required:"必填",default:"-"},
+                    {name:"tip",desc:"tip提示信息",type:"String",required:"非必填",default:"-"},
+                    {name:"width",desc:"上传图片验证规格Width验证,vType必须标识为gif,jpg,png,icon等图片后缀名称",type:"String",required:"非必填",default:"-"},
+                    {name:"height",desc:"上传图片验证规格height验证,vType必须标识为gif,jpg,png,icon等图片后缀名称",type:"String",required:"非必填",default:"-"},
+                ]
+            },
+            events:{
+                key:"事件",
+                tips:"",
+                cols:[
+                    {name:"name",val:"事件名称"},{name:"desc",val:"事件描述"},{name:"params",val:"参数"},
+                ],
+                data:[
+                    
+                ]
+            },
+            methods:{
+                key:"方法",
+                tips:"",
+                cols:[
+                    {name:"name",val:"方法名称"},{name:"desc",val:"方法描述"},{name:"demo",val:"示例"},{name:"params",val:"参数"}
+                ],
+                data:[
+                ]
+            }
+        }
+    },
+    asynTree:{
+        route:{path:"asynTree",name:"asynTree",route:"/asynTree",cls:""},
+        name:"AsynTree 异步加载树",
+        type:"asynTree",
+        desc:"<le-asyn-tree>，使用v-model进行数据的绑定",
+        baseInfo:'<le-asyn-tree displayName="name" :asynOptions="asynOptions" ref="tree" :itemClick="itemClick" checkbox></le-asyn-tree>',
+        info:{
+            propertys:{
+                key:"属性",
+                tips:"asynOptions.analysis必须返回数组",
+                cols:[
+                    {name:"name",val:"参数"},{name:"desc",val:"说明"},{name:"type",val:"类型"},
+                    {name:"required",val:"可选值"},{name:"default",val:"默认值"}
+                ],
+                data:[
+                    {name:"displayName",desc:"数据源显示字段",type:"String",required:"必填",default:"-"},
+                    {name:"ref",desc:"组件的唯一key，不允许重复",type:"String",required:"必填",default:"-"},
+                    {name:"checkbox",desc:"是否显示checkbox",type:"Boolean",required:"非必填",default:"false"},
+                    {name:"---asynOptions---",desc:"ajax请求url配置(getUrl)和analysis函数",type:"JSON",required:"必填",default:"-"},
+                    {name:"getUrl",desc:"返回一个url",type:"Function",required:"必填",default:"-"},
+                    {name:"analysis",desc:"解析从服务端返回回来的数据，必须返回数组",type:"Function",required:"必填",default:"-"},
+                ]
+            },
+            events:{
+                key:"事件",
+                tips:"",
+                cols:[
+                    {name:"name",val:"事件名称"},{name:"desc",val:"事件描述"},{name:"params",val:"参数"},
+                ],
+                data:[
+                    {name:"itemClick",desc:"TreeNode选中事件",params:"item:当前选中的item对象"}
+                ]
+            },
+            methods:{
+                key:"方法",
+                tips:"初始化必须在组件外部调用ajax方法，进行init初始化(asynOptions只是处理从第二级往下的异步加载), deleteSingleNode:谨慎使用(允许直接删除父节点)",
+                cols:[
+                    {name:"name",val:"方法名称"},{name:"desc",val:"方法描述"},{name:"demo",val:"示例"},{name:"params",val:"参数"}
+                ],
+                data:[
+                    {name:"init",desc:"初始化tree的数据源(非常重要)",demo:"this.$refs['组件key'].init(data);",params:"data为一维数组,通常为parentNodeList"},
+                    {name:"deleteSingleNode",desc:"删除所选节点(无论层级关系)",demo:"this.$refs['组件key'].deleteSingleNode(Node);",params:"Node:当前所选Node,可以通过itemClick方法得到"},
+                    {name:"getAllCheckedNodes",desc:"获取所有选中的子节点(包含所有选中状态的父节点)",demo:"this.$refs['tree'].getAllCheckedNodes();",params:"-"},
+                    {name:"getAllCheckboxNodesExcludeParent",desc:"获取所有选中的子节点(不包含所有选中状态的父节点)",demo:"this.$refs['tree'].getAllCheckboxNodesExcludeParent();",params:"-"},
+                    {name:"reset",desc:"重置tree数据源,该方法无需参数",demo:"this.$refs['tree'].reset();",params:"-"},
+                ]
+            }
+        }
+    },
+    localTree:{
+        route:{path:"localTree",name:"localTree",route:"/localTree",cls:""},
+        name:"LocalTree 一次性加载所有数据源的Tree",
+        type:"localTree",
+        desc:"<le-asyn-tree>，使用v-model进行数据的绑定",
+        baseInfo:'<le-local-tree displayName="name" ref="tree" :itemClick="itemClick" childrenKey="children" checkbox></le-local-tree>',
+        info:{
+            propertys:{
+                key:"属性",
+                tips:"",
+                cols:[
+                    {name:"name",val:"参数"},{name:"desc",val:"说明"},{name:"type",val:"类型"},
+                    {name:"required",val:"可选值"},{name:"default",val:"默认值"}
+                ],
+                data:[
+                    {name:"displayName",desc:"数据源显示字段",type:"String",required:"必填",default:"-"},
+                    {name:"ref",desc:"组件的唯一key，不允许重复",type:"String",required:"必填",default:"-"},
+                    {name:"childrenKey",desc:"数据源的childrenKey",type:"String",required:"必填",default:"-"},
+                    {name:"checkbox",desc:"是否显示checkbox",type:"Boolean",required:"非必填",default:"false"},
+                ]
+            },
+            events:{
+                key:"事件",
+                tips:"",
+                cols:[
+                    {name:"name",val:"事件名称"},{name:"desc",val:"事件描述"},{name:"params",val:"参数"},
+                ],
+                data:[
+                    {name:"itemClick",desc:"TreeNode选中事件",params:"item:当前选中的item对象"}
+                ]
+            },
+            methods:{
+                key:"方法",
+                tips:"初始化必须执行init方法进行组件内部数据源初始化, deleteSingleNode:谨慎使用(允许直接删除父节点)",
+                cols:[
+                    {name:"name",val:"方法名称"},{name:"desc",val:"方法描述"},{name:"demo",val:"示例"},{name:"params",val:"参数"}
+                ],
+                data:[
+                    {name:"init",desc:"初始化tree的数据源(非常重要)",demo:"this.$refs['组件key'].init(data);",params:"data为一维数组,通常为parentNodeList"},
+                    {name:"deleteSingleNode",desc:"删除所选节点(无论层级关系)",demo:"this.$refs['组件key'].deleteSingleNode(Node);",params:"Node:当前所选Node,可以通过itemClick方法得到"},
+                    {name:"getAllCheckedNodes",desc:"获取所有选中的子节点(包含所有选中状态的父节点)",demo:"this.$refs['tree'].getAllCheckedNodes();",params:"-"},
+                    {name:"getAllCheckboxNodesExcludeParent",desc:"获取所有选中的子节点(不包含所有选中状态的父节点)",demo:"this.$refs['tree'].getAllCheckboxNodesExcludeParent();",params:"-"},
+                    {name:"reset",desc:"重置tree数据源,该方法无需参数",demo:"this.$refs['tree'].reset();",params:"-"},
+                    {name:"updateSingleNode",desc:"更新单个节点,需要2个参数(node,data-->传输的数据,格式{__displayName:'显示名字',__children:[需要添加的数组]})",demo:"this.$refs['tree'].updateSingleNode(node,array);",params:"node:当前节点,array:需要更新的数组"},
+                    {name:"checkAll",desc:"选中/非选中所有checkbox，必须配置checkbox属性",demo:"this.$refs['tree'].checkAll(flag);",params:"flag:true or false"},
+                    {name:"expandAll",desc:"展开/关闭中所有节点",demo:"this.$refs['tree'].expandAll(flag);",params:"flag:true or false"},
+                    {name:"bindCKByField",desc:"数据回写绑定节点",demo:"this.$refs['tree'].bindCKByField(field,array);",params:"field:绑定的字段名称,array:一维数组,需要绑定的值"},
+                ]
+            }
+        }
+    },
 }
 
 export default comps;
