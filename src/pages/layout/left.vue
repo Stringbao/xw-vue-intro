@@ -5,8 +5,7 @@
                 <a class="componentTitle">组件</a>
                 <ul>
                     <li>
-                        <a @click="goInput">Input</a>
-                        <a @click="goTextArea">TextArea</a>
+                        <a :class="item.cls" v-for="(item,idx) in routes" @click="go(item)" :key="idx">{{item.name}}</a>
                     </li>
                 </ul>
             </li>
@@ -15,19 +14,42 @@
 </template>
 
 <script>
+import data from "../data.js";
+let clsKey = "active";
 export default {
     name: 'Left',
     data(){
         return {
-            
+            comps:[]
+        }
+    },
+    computed:{
+        routes(){
+            let res = [];
+            for(let x in this.comps){
+                res.push(this.comps[x].route);
+            }
+            return res;
         }
     },
     methods:{
-        goInput(){
-            this.$router.push({path:"/input"});
+        go(item){
+            if(item.name == this.$route.name){
+                return;
+            }
+            for(let x in this.comps){
+                data[x].route.cls = "";
+            }
+            item.cls = clsKey;
+            this.$router.push({path:item.route});
         },
-        goTextArea(){
-            this.$router.push({path:"/textarea"});
+    },
+    mounted(){
+        this.comps = data;
+        for(let x in this.comps){
+            if(data[x].route.name == this.$route.name){
+                data[x].route.cls = clsKey;
+            }
         }
     }
 }
@@ -36,6 +58,10 @@ export default {
 
 <style scoped>
 
+.active{
+    color:red !important;
+    font-size: 14px;
+}
 
 .xwVueIntro .content .leftContent{
     width: 240px;

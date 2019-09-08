@@ -44,7 +44,7 @@
 </template>
 
 <script>
-import COMPS from "./data.js";
+import COMPS from "../data.js";
 export default {
     name: 'comp',
     data(){
