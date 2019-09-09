@@ -1,4 +1,85 @@
+let searchList = 
+    `<!-- 总的容器 le_comps_core_css -->\n` + 
+    `<div class="le_comps_core_css">\n`+
+    `   <!-- 页面标题 le_page_name -->\n`+
+    `   <h4 class="le_page_name">新的样式测试页面</h4>\n`+
+    `   <!-- 查询条件容器 le_list_search_pannel -->\n`+
+    `   <div class='le_list_search_pannel clearfix'>\n`+
+    `       <!-- col1 col2 col3 col4表示宽度25%, 50%, 75%, 100% -->\n`+
+    `       <div class="col1">\n`+
+    `           <le-input labelWidth="120" label="订单编号:" v-model="searchModel.orderCode"></le-input>\n`+
+    `       </div>\n`+
+    `    </div>\n`+
+    `   <!-- 查询条件按钮组 le_search_btn_group-->\n`+
+    `   <div class="le_search_btn_group cleatfix">\n`+
+    `       <le-button type="create" value="新建" @click="add"></le-button>\n`+
+    `   </div>\n`+
+    `   <!-- tableList容器 le_table_container -->\n`+
+    `   <div class='le_table_container'>\n`+
+    `       <table-list title="黑名单列表" ref='black_list_table' :options='tableOptions'></table-list>\n`+
+    `   </div>\n`+
+    `</div>`;
+let dialog = 
+    `<le-dialog title="新建弹层" height="605" width="1000" v-model="showDialog">\n`+
+    `   <div slot="body">\n`+
+    `       <le-form labelWidth='180' ref="saveForm">\n`+
+    `           <!-- le_form_row_item为固定样式,组件后面跟一个按钮 -->\n`+
+    `           <div class="le_form_row_item">\n`+
+    `               <le-input labelWidth='150' tip="请输入身份证号码" label="身份证号码" v-model="entity.id"></le-input>\n`+
+    `               <le-button v-show="hideAllTag" type="create" value="显示提醒" @click="showAlert"></le-button>\n`+
+    `           </div>\n`+
+    `           <le-input labelWidth='150' tip="输入省市区的详细信息" label="地址" v-model="entity.address"></le-input>\n`+
+    `           <!-- 同样form里面也可以使用col1-4来表示宽度 -->\n`+
+    `           <div class="col4">\n`+
+    `               <le-button type="create" value="测试按钮"></le-button>\n`+
+    `               <le-time-picker labelWidth='30' label="至" tip="输入当前之后的时间" v-model="entity.time"></le-time-picker>\n`+
+    `           </div>\n`+
+    `           <le-radio-list labelWidth='150' label="性别" display-name="name" :data-source="sex" display-value="code" v-model="entity.sex"></le-radio-list>\n`+
+    `       </le-form>\n`+
+    `   </div>\n`+
+    `   <div slot="button">\n`+
+    `       <le-button type="cancel" value="取消" @click="close"></le-button>\n`+
+    `       <le-button type="save" value="保存" @click="save"></le-button>`+
+    `   </div>\n`+
+    `</le-dialog>`;
+
+let newPage = 
+    `<!-- 新页面必须包含在 le_comps_core_css里面内，如果新页面里面使用了form组件，则form组件的所有父节点中必须设置宽度和高度，否则form组件撑满页面-->\n`+
+    `<div class="le_comps_core_css new_page_width">\n`+
+    `   <!-- 页面名称 le_page_name -->\n`+
+    `   <h4 class="le_page_name">新的样式测试页面</h4>\n`+
+    `   <le-form labelWidth='180' ref="saveForm">\n`+
+    `   <!-- le_form_row_item为固定样式,组件后面跟一个按钮 -->\n`+
+    `       <div class="le_form_row_item">\n`+
+    `           <le-input labelWidth='150' tip="请输入身份证号码" label="身份证号码" v-model="entity.id"></le-input>\n`+
+    `           <le-button v-show="hideAllTag" type="create" value="显示提醒" @click="showAlert"></le-button>\n`+
+    `       </div>\n`+
+    `       <le-input labelWidth='150' tip="输入省市区的详细信息" label="地址" v-model="entity.address"></le-input>\n`+
+    `       <!-- 同样form里面也可以使用col1-4来表示宽度 -->\n`+
+    `       <div class="col4 le_full_width">\n`+
+    `           <le-button type="create" value="测试按钮"></le-button>\n`+
+    `           <le-time-picker labelWidth='30' label="至" tip="输入当前之后的时间" v-model="entity.time"></le-time-picker>\n`+
+    `       </div>\n`+
+    `       <le-radio-list labelWidth='150' label="性别" display-name="name" :data-source="sex" display-value="code" v-model="entity.sex"></le-radio-list>\n`+
+    `       <div class="le_new_page_btn_group">\n`+
+    `           <le-button value="返回" type="back" @click="back"></le-button>\n`+
+    `           <le-button value="确定" type="save" @click="save"></le-button>\n`+
+    `       </div>\n`+
+    `   </le-form>\n`+
+    `</div>`;
+
+
 let comps = {
+    html:{
+        route:{path:"html",name:"html",route:"/html",cls:""},
+        name:"html文件格式描述",
+        type:"html",
+        desc:"所有的页面，最顶层容器必须包含le_comps_core_css这个Class(非常重要!)",
+        baseInfo:'',
+        searchList:searchList,
+        dialog:dialog,
+        newPage:newPage
+    },
     input:{
         route:{path:"input",name:"input",route:"/input",cls:""},
         name:"Input 文本框",
@@ -168,13 +249,45 @@ let comps = {
                 ]
             },
             events:{
-                key:"事件",
+                key:"按钮类型枚举",
                 tips:"",
                 cols:[
-                    {name:"name",val:"事件名称"},{name:"desc",val:"事件描述"},{name:"params",val:"参数"},
+                    {name:"name",val:"按钮类型"},{name:"desc",val:"事件描述"}
                 ],
                 data:[
-                    {name:"click",desc:"click事件",params:"-"},
+                    {name:"search",desc:"搜索"},
+                    {name:"create",desc:"新增"},
+                    {name:"download",desc:"下载"},
+                    {name:"update",desc:"更新"},
+                    {name:"remove",desc:"删除"},
+                    {name:"approve",desc:"审核"},
+                    {name:"reject",desc:"拒绝"},
+                    {name:"start",desc:"启用"},
+                    {name:"stop",desc:"停用"},
+                    {name:"info",desc:"详情"},
+                    {name:"reset",desc:"重置"},
+                    {name:"up",desc:"上架"},
+                    {name:"down",desc:"下架"},
+                    {name:"publish",desc:"发布"},
+                    {name:"cancelPublish",desc:"取消发布"},
+                    {name:"import",desc:"导入"},
+                    {name:"export",desc:"导出"},
+                    {name:"review",desc:"批量操作"},
+                    {name:"copy",desc:"复制"},
+                    {name:"setting",desc:"设置"},
+                    {name:"decorate",desc:"装修"},
+                    {name:"prevPage",desc:"上一页"},
+                    {name:"nextPage",desc:"下一页"},
+                    {name:"confirm",desc:"确定"},
+                    {name:"save",desc:"保存"},
+                    {name:"back",desc:"返回"},
+                    {name:"cancel",desc:"取消"},
+                    {name:"choose",desc:"请选择XXXX"},
+                    {name:"holdSave",desc:"暂存"},
+                    {name:"prev",desc:"上一步"},
+                    {name:"next",desc:"下一步"},
+                    {name:"default",desc:"默认"},
+                    {name:"warning",desc:"警告"},
                 ]
             },
             methods:{
@@ -492,6 +605,8 @@ let comps = {
                     {name:"ref",desc:"组件key,不允许重复",type:"String",required:"必填",default:"-"},
                     {name:"labelWidth",desc:"label宽度",type:"Number",required:"非必填",default:"100"},
                     {name:"label",desc:"label名",type:"String",required:"非必填",default:"-"},
+                    {name:"width",desc:"宽度,支持百分比和纯数字",type:"String",required:"非必填",default:"100%"},
+                    {name:"height",desc:"高度,支持百分比和纯数字",type:"String",required:"非必填",default:"100px"},
                     {name:"tip",desc:"输入提示信息",type:"String",required:"非必填",default:"-"},
                     {name:"on",desc:"是否开启验证",type:"Boolean",required:"非必填",default:"false"},
                     {name:"msg",desc:"错误提示信息",type:"String",required:"非必填",default:"-"}
@@ -531,7 +646,7 @@ let comps = {
         info:{
             propertys:{
                 key:"属性",
-                tips:"form表单的宽高是跟着父元素的宽高",
+                tips:"form表单的宽高是跟着父元素的宽高, 也就是说容纳这个form表单的容器，必须有宽度，一般高度为100%",
                 cols:[
                     {name:"name",val:"参数"},{name:"desc",val:"说明"},{name:"type",val:"类型"},
                     {name:"required",val:"可选值"},{name:"default",val:"默认值"}

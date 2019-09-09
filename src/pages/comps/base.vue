@@ -10,13 +10,23 @@
                     </p>
                 </div>
             </li>
-            <li>
+            <li v-show="comp.baseInfo">
                 <h3>基础用法</h3>
                 <div class="info">
                     {{comp.baseInfo}}
                 </div>
             </li>
-            <li v-for="(item,idx) in items" :key="idx">
+            <li v-show="comp.type=='html'">
+                <h3>SearchList(搜索，table布局+样式)</h3>
+                <textarea class="textareaInfo" readonly style="height:322px" v-model="comp.searchList"></textarea>
+
+                <h3>Dialog(弹出层的布局+样式)</h3>
+                <textarea class="textareaInfo" readonly style="height:342px" v-model="comp.dialog"></textarea>
+
+                <h3>打开新页面</h3>
+                <textarea class="textareaInfo" style="height:374px" v-model="comp.newPage"></textarea>
+            </li>
+            <li v-show="comp.type!='html'" v-for="(item,idx) in items" :key="idx">
                 <h3>{{comp.info[item].key}}</h3>
                 <div class="tableContent">
                     <table class="attributesTable">
@@ -79,6 +89,10 @@ export default {
 </script>
 
 <style scoped>
+.textareaInfo{
+    width: 100%;
+    height: 300px;
+}
 .detailContent{
     padding-top: 50px;
     text-align: left;
