@@ -531,7 +531,7 @@ let comps = {
         info:{
             propertys:{
                 key:"属性",
-                tips:"form表单的style必须给一个初始值,表示form表单的宽度???能否跟着容器宽度走，居中对齐？？？",
+                tips:"form表单的宽高是跟着父元素的宽高",
                 cols:[
                     {name:"name",val:"参数"},{name:"desc",val:"说明"},{name:"type",val:"类型"},
                     {name:"required",val:"可选值"},{name:"default",val:"默认值"}
