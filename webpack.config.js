@@ -42,7 +42,7 @@ module.exports = (env = {}) =>{
         entry: ['babel-polyfill','./src/index.js'],//入口
         output: {
             path: path.resolve(__dirname, './dist'),//输出结果
-            publicPath: env.production ? './' : '/', //文件路径
+            publicPath: env.Generative ? './' : '/', //文件路径
             filename: '[name].js?v='+ver,
             chunkFilename: '[id].chunk.js?v='+ver
         },
