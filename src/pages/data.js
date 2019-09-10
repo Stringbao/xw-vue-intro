@@ -801,6 +801,7 @@ let comps = {
                     {name:"---options---",desc:"options所有配置如下:",type:"JSON",required:"必填",default:"-"},
                     {name:"multiple",desc:"是否允许多文件上传",type:"Boolean",required:"非必填",default:"false"},
                     {name:"url",desc:"请求url",type:"String",required:"必填",default:"-"},
+                    {name:"noResult",desc:"隐藏上传返回数据, 直接显示上传成功",type:"String",required:"非必填",default:"false"},
                     {name:"vtype",desc:"上传文件类型,逗号分割",type:"String",required:"非必填",default:"-"},
                     {name:"fname",desc:"服务器上传标识key",type:"String",required:"必填",default:"-"},
                     {name:"analysis",desc:"返回路径解析函数, 必须return路径",type:"Function",required:"必填",default:"-"},
