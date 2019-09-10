@@ -700,6 +700,7 @@ let comps = {
                     {name:"displayName",desc:"显示字段",type:"String",required:"必填",default:"-"},
                     {name:"displayValue",desc:"传值字段",type:"String",required:"必填",default:"-"},
                     {name:"dataSource",desc:"数据源",type:"Array",required:"必填",default:"[]"},
+                    {name:"placeholder",desc:"placeholder",type:"String",required:"非必填",default:"-"},
                     {name:"labelWidth",desc:"label宽度",type:"Number",required:"非必填",default:"100"},
                     {name:"label",desc:"label名",type:"String",required:"非必填",default:"-"},
                     {name:"tip",desc:"input输入提示信息",type:"String",required:"非必填",default:"-"},
