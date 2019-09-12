@@ -122,7 +122,7 @@ let comps = {
                     {name:"negativeNumber",desc:"负数"},
                     {name:"negativeDecimals",desc:"负小数"},
                     {name:"negative",desc:"负整数"},
-                    {name:"emai",desc:"邮箱"},
+                    {name:"email",desc:"邮箱"},
                     {name:"url",desc:"url(https或者http)"},
                     {name:"https",desc:"https的url"},
                     {name:"http",desc:"http的url"},
@@ -456,9 +456,9 @@ let comps = {
                 ],
                 data:[
                     {name:"change",desc:"日期发送变化时候的change事件",params:"value:当前值"},
-                    {name:"pervYearChange",desc:"上一年change事件",params:"year:所选年份,month:当前月份,str:当前选中日期"},
+                    {name:"prevYearChange",desc:"上一年change事件",params:"year:所选年份,month:当前月份,str:当前选中日期"},
                     {name:"nextYearChange",desc:"下一年change事件",params:"year:所选年份,month:当前月份,str:当前选中日期"},
-                    {name:"pervMonthChange",desc:"上一月change事件",params:"year:当前月份,month:所选月份,str:当前选中日期"},
+                    {name:"prevMonthChange",desc:"上一月change事件",params:"year:当前月份,month:所选月份,str:当前选中日期"},
                     {name:"nextMonthChange",desc:"下一月change事件",params:"year:当前月份,month:所选月份,str:当前选中日期"}
                 ]
             },
@@ -708,12 +708,12 @@ let comps = {
         route:{path:"select",name:"select",route:"/select",cls:""},
         name:"Select 下拉框",
         type:"select",
-        desc:"<le-checkbox>复选框, 使用v-model进行数据的绑定, data-source进行数据源的绑定",
+        desc:"<le-checkbox>复选框, 使用v-model进行数据的绑定, data-source进行数据源的绑定(如果手动清空数据源, 那么会自己清空v-model的值)",
         baseInfo:'<le-local-select label="选择职业" :data-source="shops" display-name="val" display-value="key" v-model="job"></le-local-select>',
         info:{
             propertys:{
                 key:"属性",
-                tips:"on开启验证功能(无需required), display-name显示字段, display-value传值字段,data-source数据源,如果手动设置数据源为[],那么当前组件的v-model也会清空",
+                tips:"on开启验证功能,只验证当前v-model是否为空(无需required), display-name显示字段, display-value传值字段",
                 cols:[
                     {name:"name",val:"参数"},{name:"desc",val:"说明"},{name:"type",val:"类型"},
                     {name:"required",val:"可选值"},{name:"default",val:"默认值"}
