@@ -84,7 +84,7 @@ let comps = {
         route:{path:"input",name:"input",route:"/input",cls:""},
         name:"Input 文本框",
         type:"input",
-        desc:"<le-input>文本框，使用v-model进行数据的绑定",
+        desc:"<le-input>文本框，使用v-model进行数据的绑定, 如果要开启验证, 必须开启on",
         baseInfo:'<le-input labelWidth="150" placeholder="请输入年龄" label="年龄" v-model="age"><le-input>',
         info:{
             propertys:{
@@ -105,6 +105,31 @@ let comps = {
                     {name:"required",desc:"是否必填",type:"Boolean",required:"非必填",default:"false"},
                     {name:"vType",desc:"文本框验证类型",type:"String",required:"非必填",default:"-"},
                     {name:"msg",desc:"错误提示信息",type:"String",required:"非必填",default:"-"},
+                ]
+            },
+            check:{
+                key:"验证类型",
+                tips:"input的验证类型,vType='email'",
+                cols:[
+                    {name:"name",val:"类型"},{name:"desc",val:"说明"}
+                ],
+                data:[
+                    {name:"decimals",desc:"数字(正负,小数整数都可以)"},
+                    {name:"number",desc:"正,负整数"},
+                    {name:"positive",desc:"正整数"},
+                    {name:"positiveDecimals",desc:"正小数"},
+                    {name:"positiveNumber",desc:"正数"},
+                    {name:"negativeNumber",desc:"负数"},
+                    {name:"negativeDecimals",desc:"负小数"},
+                    {name:"negative",desc:"负整数"},
+                    {name:"emai",desc:"邮箱"},
+                    {name:"url",desc:"url(https或者http)"},
+                    {name:"https",desc:"https的url"},
+                    {name:"http",desc:"http的url"},
+                    {name:"id",desc:"身份证"},
+                    {name:"phone",desc:"手机号(不包含固话)"},
+                    {name:"tel",desc:"电话号(含固话 手机)"},
+                    {name:"password",desc:"密码, 字母开头 长度6-18，只能包含字符 数字 和 下划线"},
                 ]
             },
             events:{
