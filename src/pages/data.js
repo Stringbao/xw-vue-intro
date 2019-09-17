@@ -455,7 +455,7 @@ let comps = {
                     {name:"name",val:"事件名称"},{name:"desc",val:"事件描述"},{name:"params",val:"参数"},
                 ],
                 data:[
-                    {name:"change",desc:"日期发送变化时候的change事件",params:"value:当前值"},
+                    {name:"change",desc:"日期发生变化触发的change事件",params:"value:当前值"},
                     {name:"prevYearChange",desc:"上一年change事件",params:"year:所选年份,month:当前月份,str:当前选中日期"},
                     {name:"nextYearChange",desc:"下一年change事件",params:"year:所选年份,month:当前月份,str:当前选中日期"},
                     {name:"prevMonthChange",desc:"上一月change事件",params:"year:当前月份,month:所选月份,str:当前选中日期"},
@@ -506,7 +506,7 @@ let comps = {
                     {name:"name",val:"事件名称"},{name:"desc",val:"事件描述"},{name:"params",val:"参数"},
                 ],
                 data:[
-                    {name:"change",desc:"时间发送变化时候的change事件",params:"value:当前值"}
+                    {name:"change",desc:"时间发生变化触发的change事件",params:"value:当前值"}
                 ]
             },
             methods:{
@@ -523,9 +523,9 @@ let comps = {
     },
     dateTimePicker:{
         route:{path:"dateTimePicker",name:"dateTimePicker",route:"/dateTimePicker",cls:""},
-        name:"DateTimePicker 时间选择器",
+        name:"DateTimePicker 日期时间选择器",
         type:"dateTimePicker",
-        desc:"<le-date-time-picker>时间日期组件，使用v-model进行数据的绑定",
+        desc:"<le-date-time-picker>日期时间组件，使用v-model进行数据的绑定",
         baseInfo:'<le-date-time-picker label="时间日期组件" v-model="entity.datetime"></le-date-time-picker>',
         info:{
             propertys:{
@@ -553,7 +553,7 @@ let comps = {
                     {name:"name",val:"事件名称"},{name:"desc",val:"事件描述"},{name:"params",val:"参数"},
                 ],
                 data:[
-                    {name:"change",desc:"时间发送变化时候的change事件",params:"value:当前值"}
+                    {name:"change",desc:"日期时间发生变化触发的change事件",params:"value:当前值"}
                 ]
             },
             methods:{
