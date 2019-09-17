@@ -615,7 +615,7 @@ let comps = {
         route:{path:"editor",name:"editor",route:"/editor",cls:""},
         name:"editor富文本编辑器",
         type:"editor",
-        desc:"<le-dialog>弹出层，使用v-model进行隐藏和显示",
+        desc:"<le-editor>使用必须要通过getCurrentComponent来获取组件对象,使用getValue和setValue来获取和设置当前富文本编辑框的值",
         baseInfo:'<le-editor label="pc端:" :option="editorOption" ref="pcEditor"></le-editor>',
         info:{
             propertys:{
@@ -666,8 +666,8 @@ let comps = {
         route:{path:"form",name:"form",route:"/form",cls:""},
         name:"Form表单提交",
         type:"form",
-        desc:"<le-input>文本框，使用v-model进行数据的绑定",
-        baseInfo:'<le-form labelWidth="180" ref="saveForm" style="width:800px;margin:0 auto">',
+        desc:"<le-form>提供表单验证功能的form组件",
+        baseInfo:'<le-form labelWidth="180" ref="saveForm">',
         info:{
             propertys:{
                 key:"属性",
@@ -708,7 +708,7 @@ let comps = {
         route:{path:"select",name:"select",route:"/select",cls:""},
         name:"Select 下拉框",
         type:"select",
-        desc:"<le-checkbox>复选框, 使用v-model进行数据的绑定, data-source进行数据源的绑定(如果手动清空数据源, 那么会自己清空v-model的值)",
+        desc:"<le-local-select>带搜索(本地filter)，带所选的下拉框",
         baseInfo:'<le-local-select label="选择职业" :data-source="shops" display-name="val" display-value="key" v-model="job"></le-local-select>',
         info:{
             propertys:{
@@ -759,8 +759,8 @@ let comps = {
         route:{path:"table",name:"table",route:"/table",cls:""},
         name:"带分页的TableList",
         type:"table",
-        desc:"<table-list>分页Table组件,具有loading以及防止在数据渲染完毕之前，发送多次请求的功能，没有数据的时候展示[暂无数据]的友好体验",
-        baseInfo:'<table-list title="黑名单列表" ref="black_list_table" :options="tableOptions"></table-list>',
+        desc:"<table-list>分页Table组件,具有loading以及防止在数据渲染完毕之前，发送多次请求的功能，没有数据的时候展示[暂无数据]",
+        baseInfo:'<table-list title="项目管理列表" ref="black_list_table" :options="tableOptions"></table-list>',
         info:{
             propertys:{
                 key:"属性",
@@ -776,9 +776,45 @@ let comps = {
                     {name:"showCk",desc:"是否显示checkbox",type:"Boolean",required:"非必填",default:"false"},
                     {name:"singleSelected",desc:"是否显示radio, 要使用这个属性性必须配置showCk",type:"Boolean",required:"非必填",default:"false"},
                     {name:"map",desc:"返回数据源的列的映射",type:"Array",required:"必填",default:"-"},
-                    {name:"getUrl",desc:"返回请求服务器的url",type:"Function",required:"必填",default:"-"},
+                    {name:"getUrl",desc:"返回请求服务器的url",type:"function",required:"必填",default:"-"},
                     {name:"pageOption",desc:"分页属性参数",type:"JSON",required:"必填",default:"-"},
-                    {name:"actions",desc:"每行row的左侧操作按钮,传递2个参数(key,row)，支持convert(必须return值)和action函数",type:"Array",required:"必填",default:"-"}
+                    {name:"actions",desc:"每行row的左侧操作按钮",type:"Array",required:"非必填",default:"-"},
+                    {name:"analysis",desc:"解析服务端返回的数据,返回特定的格式",type:"function",required:"非必填",default:"-"},
+                ]
+            },
+            getUrl:{
+                key:"table里面的getUrl函数详解",
+                tips:"getUrl为一个函数，return一个字符串, 当return为空的时候, table将不请求服务器",
+            },
+            analysis:{
+                key:"table里面的analysis函数详解",
+                tips:"数据解析参数, 该方法有一个参数data,为服务端返回的原始数据, 需要将这个data解析成一个json对象{data:[],count:0}这样的数据格式, data必须为数组",
+            },
+            pageOption:{
+                key:"table里面的pageOption详解",
+                tips:"分页配置参数",
+                cols:[
+                    {name:"name",val:"名字"},{name:"desc",val:"描述"},{name:"type",val:"默认值"}
+                ],
+                data:[
+                    {name:"sizeKey",desc:"服务端分页需要的大小字段",type:"-"},
+                    {name:"indexKey",desc:"服务端分页需要的索引字段",type:"-"},
+                    {name:"index",desc:"开始索引值",type:"1"},
+                    {name:"size",desc:"分页大小值",type:"10"},
+                ]
+            },
+            actions:{
+                key:"table里面的action详解",
+                tips:"convert方法有2个参数, row在第二个参数里面, show方法必须return true or false",
+                cols:[
+                    {name:"name",val:"名字"},{name:"desc",val:"描述"},{name:"type",val:"类型"},{name:"params",val:"参数"}
+                ],
+                data:[
+                    {name:"key",desc:"按钮的样式类型，与le-button的type对应",type:"String",params:"-"},
+                    {name:"val",desc:"按钮的显示名称",params:"-",type:"String"},
+                    {name:"action",desc:"按钮触发的事件",params:"row(当前行对象)",type:"function"},
+                    {name:"convert",desc:"转换函数，支持return html代码",params:"key(当前col对象),row(当前行对象)",type:"function"},
+                    {name:"show",desc:"是否显示当前按钮函数",params:"row(当前行对象),比如return true or false",type:"function"}
                 ]
             },
             events:{
@@ -807,12 +843,12 @@ let comps = {
         route:{path:"upload",name:"upload",route:"/upload",cls:""},
         name:"Upload上传组件",
         type:"upload",
-        desc:"<le-input>文本框，使用v-model进行数据的绑定",
+        desc:"<le-upload>上传组件，支持单文件/多文件上传，支持大小，文件格式校验,如果是图片还支持规格(宽*高)验证，",
         baseInfo:'<le-upload :options="imgUploadOpt" v-model="entity.pcCoverImg"></le-upload>',
         info:{
             propertys:{
                 key:"属性",
-                tips:"upload组件允许设置单个或者多个文件/图片上传,可以控制规格(只针对图片),文件大小，文件类型",
+                tips:"upload组件允许设置单个或者多个文件/图片上传,可以控制规格(只针对图片),文件大小，文件类型，noResult这个参数为上传成功后是否回写数据",
                 cols:[
                     {name:"name",val:"参数"},{name:"desc",val:"说明"},{name:"type",val:"类型"},
                     {name:"required",val:"可选值"},{name:"default",val:"默认值"}
@@ -861,7 +897,7 @@ let comps = {
         route:{path:"asynTree",name:"asynTree",route:"/asynTree",cls:""},
         name:"AsynTree 异步加载树",
         type:"asynTree",
-        desc:"<le-asyn-tree>，使用v-model进行数据的绑定",
+        desc:"<le-asyn-tree>，异步加载tree",
         baseInfo:'<le-asyn-tree displayName="name" :asynOptions="asynOptions" ref="tree" :itemClick="itemClick" checkbox></le-asyn-tree>',
         info:{
             propertys:{
@@ -910,7 +946,7 @@ let comps = {
         route:{path:"localTree",name:"localTree",route:"/localTree",cls:""},
         name:"LocalTree 一次性加载所有数据源的Tree",
         type:"localTree",
-        desc:"<le-asyn-tree>，使用v-model进行数据的绑定",
+        desc:"<le-local-tree>一次性获取数据，渲染tree",
         baseInfo:'<le-local-tree displayName="name" ref="tree" :itemClick="itemClick" childrenKey="children" checkbox></le-local-tree>',
         info:{
             propertys:{
