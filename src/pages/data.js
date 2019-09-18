@@ -316,13 +316,13 @@ let comps = {
                 ]
             },
             methods:{
-                key:"方法",
+                key:"事件",
                 tips:"",
                 cols:[
-                    {name:"name",val:"方法名称"},{name:"desc",val:"方法描述"},{name:"demo",val:"示例"},{name:"params",val:"参数"}
+                    {name:"name",val:"事件名称"},{name:"desc",val:"事件描述"},{name:"params",val:"参数"}
                 ],
                 data:[
-
+                    {name:"click",desc:"click事件",params:"-"}
                 ]
             }
         }
