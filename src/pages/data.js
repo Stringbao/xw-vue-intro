@@ -998,7 +998,7 @@ let comps = {
         name:"NEC项目接口定义规则",
         type:"api",
         desc:"前后端对接的接口定义规范, 服务端返回的为一个json对象, 对象的4个属性必须都返回",
-        baseInfo:"{data:{},status:'200',msg:'',params:{}}",
+        baseInfo:"{data:{},status:200,msg:'',params:{}}",
         info:{
             propertys:{
                 key:"属性描述",
@@ -1009,7 +1009,7 @@ let comps = {
                 ],
                 data:[
                     {name:"data",desc:"返回的任意数据格式",type:"任意格式的对象",required:"必填",default:"-"},
-                    {name:"status",desc:"接口成功与否标识",type:"String",required:"必填",default:"-"},
+                    {name:"status",desc:"接口成功与否标识",type:"Number",required:"必填",default:"-"},
                     {name:"msg",desc:"错误信息",type:"String",required:"必填",default:"-"},
                     {name:"params",desc:"服务端返回的参数",type:"Object",required:"必填",default:"-"}
                 ]
