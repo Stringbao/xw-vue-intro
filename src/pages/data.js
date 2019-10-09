@@ -995,9 +995,9 @@ let comps = {
     },
     apiRule:{
         route:{path:"apiRule",name:"apiRule",route:"/apiRule",cls:""},
-        name:"接口定义规则",
+        name:"NEC项目接口定义规则",
         type:"api",
-        desc:"NEC项目前后端对接的接口定义规范, 服务端返回的为一个json对象, 对象的4个属性必须都返回",
+        desc:"前后端对接的接口定义规范, 服务端返回的为一个json对象, 对象的4个属性必须都返回",
         baseInfo:"{data:{},status:'200',msg:'',params:{}}",
         info:{
             propertys:{
