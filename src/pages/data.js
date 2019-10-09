@@ -993,6 +993,49 @@ let comps = {
             }
         }
     },
+    apiRule:{
+        route:{path:"apiRule",name:"apiRule",route:"/apiRule",cls:""},
+        name:"接口定义规则",
+        type:"api",
+        desc:"NEC项目前后端对接的接口定义规范, 服务端返回的为一个json对象, 对象的4个属性必须都返回",
+        baseInfo:"{data:{},status:'200',msg:'',params:{}}",
+        info:{
+            propertys:{
+                key:"属性描述",
+                tips:"params是服务端返回的参数",
+                cols:[
+                    {name:"name",val:"参数"},{name:"desc",val:"说明"},{name:"type",val:"类型"},
+                    {name:"required",val:"可选值"},{name:"default",val:"默认值"}
+                ],
+                data:[
+                    {name:"data",desc:"返回的任意数据格式",type:"任意格式的对象",required:"必填",default:"-"},
+                    {name:"status",desc:"接口成功与否标识",type:"String",required:"必填",default:"-"},
+                    {name:"msg",desc:"错误信息",type:"String",required:"必填",default:"-"},
+                    {name:"params",desc:"服务端返回的参数",type:"Object",required:"必填",default:"-"}
+                ]
+            },
+            check:{
+                key:"status状态码",
+                tips:"如果status状态为其他(不等于200或者701),那么前端直接会抛出msg信息, 因此服务端要返回友好的错误信息, 而不要提示一大串代码错误",
+                cols:[
+                    {name:"name",val:"类型"},{name:"desc",val:"说明"}
+                ],
+                data:[
+                    {name:"200",desc:"接口成功"},
+                    {name:"701",desc:"未登录"},
+                    {name:"其他",desc:"错误"},
+                ]
+            },
+            events:{
+                key:"data说明",
+                tips:"data可以为数组，可以为json对象，可以为任意格式的对象，返回给前端即可",
+            },
+            params:{
+                key:"params说明",
+                tips:"params为服务端在一些特殊的情况下返回给前端的参数, 允许不返回(前端收到为undefined), 但是服务端必须返回这个字段, 返回格式和data一样，任意格式的对象",
+            },
+        }
+    },
 }
 
 export default comps;
