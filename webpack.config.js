@@ -96,11 +96,12 @@ module.exports = (env = {}) =>{
 
                 },
                 {
-                    test: /\.html$/,
-                    loader: 'html-loader',
-                    options: {
-                        minimize: false
-                    }
+                    test: /\.md$/,
+                    use:[
+                        {
+                            loader:"text-loader"
+                        },
+                    ]
                 }
             ]
         },

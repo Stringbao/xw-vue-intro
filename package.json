@@ -9,8 +9,9 @@
     "build": "webpack --progress --env.Generative=true"
   },
   "dependencies": {
+    "babel-polyfill": "^6.26.0",
     "vue": "^2.5.2",
-    "babel-polyfill": "^6.26.0"
+    "vue-markdown": "^2.2.4"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
@@ -39,6 +40,7 @@
     "postcss-url": "^7.2.1",
     "q": "^1.5.1",
     "style-loader": "^0.22.0",
+    "text-loader": "^0.0.1",
     "uglifyjs-webpack-plugin": "^1.1.1",
     "url-loader": "^1.1.1",
     "vue-loader": "^14.2.4",

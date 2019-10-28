@@ -1,11 +1,11 @@
 <template>
     <div class="leftContent">
-        <ul>
+        <ul v-for="(value,key) in comps" :key="key">
             <li>
-                <a class="componentTitle">组件</a>
+                <a class="componentTitle">{{value.title}}</a>
                 <ul>
                     <li>
-                        <a :class="item.cls" v-for="(item,idx) in routes" @click="go(item)" :key="idx">{{item.name}}</a>
+                        <router-link v-for="(item,idx) in value.childs"  :to="{path:`/${key}/${item.name}`}" :key="idx">{{item.title?item.title:item.name}}</router-link>
                     </li>
                 </ul>
             </li>
@@ -15,49 +15,28 @@
 
 <script>
 import data from "../data.js";
-let clsKey = "active";
 export default {
     name: 'Left',
     data(){
         return {
-            comps:[]
+            comps:data
         }
     },
     computed:{
-        routes(){
-            let res = [];
-            for(let x in this.comps){
-                res.push(this.comps[x].route);
-            }
-            return res;
-        }
+       
     },
     methods:{
-        go(item){
-            if(item.name == this.$route.name){
-                return;
-            }
-            for(let x in this.comps){
-                data[x].route.cls = "";
-            }
-            item.cls = clsKey;
-            this.$router.push({path:item.route});
-        },
+        
     },
     mounted(){
-        this.comps = data;
-        for(let x in this.comps){
-            if(data[x].route.name == this.$route.name){
-                data[x].route.cls = clsKey;
-            }
-        }
+        
     }
 }
 
 </script>
 
 <style scoped>
-
+ul,li{list-style: none};
 .active{
     color:red !important;
     font-size: 14px;
@@ -71,7 +50,6 @@ export default {
 }
 
 .xwVueIntro .content .leftContent li {
-    height: 40px;
     color: #444;
     line-height: 40px;
     font-size: 14px;
@@ -95,7 +73,7 @@ export default {
 .xwVueIntro .content .leftContent li a{
     display: block;
     height: 40px;
-    color: #444;
+    color: #333;
     line-height: 40px;
     font-size: 14px;
     overflow: hidden;
@@ -103,5 +81,8 @@ export default {
     text-overflow: ellipsis;
     font-weight: 400;
     text-decoration: none;
+}
+.xwVueIntro .content .leftContent li .router-link-exact-active.router-link-active{
+    color: red;
 }
 </style>

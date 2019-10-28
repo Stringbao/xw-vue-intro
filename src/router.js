@@ -7,27 +7,37 @@ const Base = r=>require.ensure([],()=>r(require("./pages/comps/base.vue")),"Base
 
 Vue.use(Router);
 
-function getMenus(){
-    let res = [];
-    for(let x in menus){
-        res.push(
-            {path:"/"+menus[x].route.path,name:menus[x].route.name,component: Base}
-        );
-    }
-    return res;
-}
+// function getMenus(){
+//     let res = [];
+//     for(let x in menus){
+//         for(let item of menus[x].childs){
+//             res.push(
+//                 {path:`/:${x}/:${item.name}`,component:Base}
+//             )
+//         }
+//     }
+//     return res;
+// }
 
-const routers = [
-    {
-        path: '/',
-        name: 'layout',
-        component: Layout,
-        children:getMenus()
-    }
-];
+// const routers = [
+//     {
+//         path: '/',
+//         name: 'layout',
+//         component: Layout,
+//         children:getMenus()
+//     }
+// ];
 
 const _router = new Router({
-    routes: routers
+    routes: [
+        {
+            path:'/',
+            component:Layout,
+            children:[
+                {path:':group/:item',component:Base}
+            ]
+        }
+    ]
 });
 
 export default _router;
