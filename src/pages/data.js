@@ -19,6 +19,7 @@ import asynTree from "../markdown/components/asynTree.md";
 import localTree from "../markdown/components/localTree.md";
 import apiRule from "../markdown/components/apiRule.md";
 import form from "../markdown/components/form.md";
+import nginx from "../markdown/guides/nginx.md";
 let comps = {
     components: {
         title: '组件',
@@ -47,7 +48,9 @@ let comps = {
     },
     guides: {
         title: '教程',
-        childs: []
+        childs: [
+            {name:'nginx',source:nginx,title:"nginx简易教程"}
+        ]
     }
 }
 

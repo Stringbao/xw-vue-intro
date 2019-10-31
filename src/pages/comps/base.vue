@@ -73,5 +73,19 @@ export default {
     margin: 5px 0;
     background-color: #ffffff;
 }
+>>>pre code{
+    background: transparent;
+    color: #333;
+}
+>>>code{
+    background-color: #000;
+    color: #ffffff;
+    line-height: 20px;
+    height: 20px;
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 4px;
+    margin-top: 10px;
+}
 /* @import "../../static/css/markdown.css"; */
 </style>
