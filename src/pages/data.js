@@ -20,6 +20,7 @@ import localTree from "../markdown/components/localTree.md";
 import apiRule from "../markdown/components/apiRule.md";
 import form from "../markdown/components/form.md";
 import nginx from "../markdown/guides/nginx.md";
+import optimization from "../markdown/guides/optimization.md"
 let comps = {
     components: {
         title: '组件',
@@ -49,7 +50,8 @@ let comps = {
     guides: {
         title: '教程',
         childs: [
-            {name:'nginx',source:nginx,title:"nginx简易教程"}
+            {name:'nginx',source:nginx,title:"nginx简易教程"},
+            {name:'optimization',source:optimization,title:"前端优化教程"},
         ]
     }
 }
