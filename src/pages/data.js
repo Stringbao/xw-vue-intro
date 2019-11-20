@@ -52,6 +52,7 @@ let comps = {
         childs: [
             {name:'nginx',source:nginx,title:"nginx简易教程"},
             {name:'optimization',source:optimization,title:"前端优化教程"},
+            {name:'babel',source:babel,title:"babel踩过的坑"},
         ]
     }
 }
