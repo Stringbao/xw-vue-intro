@@ -22,6 +22,7 @@ babel版本8.X.X
 
 .babelrc文件配置
 1. 打包工具库配置
+    ```
     {
         "presets": [
             "@babel/preset-env"
@@ -31,7 +32,9 @@ babel版本8.X.X
             "@babel/plugin-syntax-dynamic-import"
         ]
     }
+    ```
 2. 项目打包配置
+   ```
    {
         "presets": [
             [
@@ -46,4 +49,5 @@ babel版本8.X.X
             "@babel/plugin-syntax-dynamic-import"
         ]
     }
+    ```
 

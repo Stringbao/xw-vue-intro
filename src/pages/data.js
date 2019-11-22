@@ -19,8 +19,13 @@ import asynTree from "../markdown/components/asynTree.md";
 import localTree from "../markdown/components/localTree.md";
 import apiRule from "../markdown/components/apiRule.md";
 import form from "../markdown/components/form.md";
+
+
 import nginx from "../markdown/guides/nginx.md";
-import optimization from "../markdown/guides/optimization.md"
+import optimization from "../markdown/guides/optimization.md";
+import babel from "../markdown/guides/babel.md";
+
+
 let comps = {
     components: {
         title: '组件',

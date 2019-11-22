@@ -4,7 +4,7 @@
       <li>
         <a class="componentTitle" @click="handleShow(value)">{{value.title}}</a>
         <transition-group name="list" tag="ul">
-          <li v-for="(item,idx) in value.childs" :key="idx" v-show="value.show">
+          <li v-for="(item,idx) in value.childs" :key="idx+'.1'" v-show="value.show">
             <router-link :to="{path:`/${key}/${item.name}`}">{{item.title?item.title:item.name}}</router-link>
           </li>
         </transition-group>
