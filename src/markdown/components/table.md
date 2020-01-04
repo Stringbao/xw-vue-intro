@@ -69,3 +69,4 @@
 | ------------------ | --------------------- | --------------------------------------------- | ---- |
 | search             | 索引初始化的table查询 | this.$refs['组件的ref'].search();             | -    |
 | searchCurrentIndex | 当前索引的查询        | this.$refs['组件的ref'].searchCurrentIndex(); | -    |
+| getCheckedItems | 获取选中项        | this.$refs['组件的ref'].getCheckedItems(field); | field可选,如果有field参数,该方法返回里面包含field的集合|
