@@ -1,4 +1,5 @@
 import markdown from "../markdown/components/markdown.md";
+import developmentNorm from "../markdown/components/developmentNorm.md";
 
 import html from "../markdown/components/html.md";
 import input from "../markdown/components/input.md";
@@ -31,6 +32,7 @@ let comps = {
         title: '组件',
         childs: [
             { name: 'markdown', source: markdown },
+            { name: 'developmentNorm', source: developmentNorm,title:"开发规范" },
             { name: 'html', source: html },
             { name: 'input', source: input },
             { name: 'textarea', source: textarea },
