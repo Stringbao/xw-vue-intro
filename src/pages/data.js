@@ -15,6 +15,7 @@ import dialog from "../markdown/components/dialog.md";
 import editor from "../markdown/components/editor.md";
 import select from "../markdown/components/select.md";
 import table from "../markdown/components/table.md";
+import localTable from "../markdown/components/localTable.md";
 import upload from "../markdown/components/upload.md";
 import asynTree from "../markdown/components/asynTree.md";
 import localTree from "../markdown/components/localTree.md";
@@ -48,6 +49,7 @@ let comps = {
             { name: 'form', source: form },
             { name: 'select', source: select },
             { name: 'table', source: table },
+            { name: 'localTable', source: localTable },
             { name: 'upload', source: upload },
             { name: 'asynTree', source: asynTree },
             { name: 'localTree', source: localTree },
