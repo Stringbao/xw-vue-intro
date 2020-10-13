@@ -1,5 +1,5 @@
 import markdown from "../markdown/components/markdown.md";
-import developmentNorm from "../markdown/components/developmentNorm.md";
+
 
 import html from "../markdown/components/html.md";
 import input from "../markdown/components/input.md";
@@ -26,6 +26,7 @@ import form from "../markdown/components/form.md";
 import nginx from "../markdown/guides/nginx.md";
 import optimization from "../markdown/guides/optimization.md";
 import babel from "../markdown/guides/babel.md";
+import developmentNorm from "../markdown/guides/developmentNorm.md";
 
 
 let comps = {
@@ -33,7 +34,6 @@ let comps = {
         title: '组件',
         childs: [
             { name: 'markdown', source: markdown },
-            { name: 'developmentNorm', source: developmentNorm,title:"开发规范" },
             { name: 'html', source: html },
             { name: 'input', source: input },
             { name: 'textarea', source: textarea },
@@ -62,6 +62,7 @@ let comps = {
             {name:'nginx',source:nginx,title:"nginx简易教程"},
             {name:'optimization',source:optimization,title:"前端优化教程"},
             {name:'babel',source:babel,title:"babel踩过的坑"},
+            { name: 'developmentNorm', source: developmentNorm,title:"开发规范" },
         ]
     }
 }
