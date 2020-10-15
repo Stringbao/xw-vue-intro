@@ -10,7 +10,7 @@
 
 6.  dialog height（一般不要设置）
 
-7.  dialog  按钮（Cancel  Save）  详情只有Close  Save在Cancel左边
+7.  dialog  按钮（Cancel  Save）  详情只有Close  Save在Cancel右边
 
 8.  (disable  delete操作需要)confirm   注意title 按钮 Cancel Confirm
 
