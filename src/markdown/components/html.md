@@ -10,7 +10,10 @@
 <!-- 总的容器 le_comps_core_css -->
 <div class="le_comps_core_css">
    <!-- 页面标题 le_page_name -->
-   <h4 class="le_page_name">新的样式测试页面</h4>
+   <!-- <h4 class="le_page_name">新的样式测试页面</h4> -->
+   <div class="le_list_breadcrumb_pannel">
+        <a href="javascript:;">Product Management > <b>category</b></a>
+    </div>
    <!-- 查询条件容器 le_list_search_pannel -->
    <div class='le_list_search_pannel clearfix'>
        <!-- col1 col2 col3 col4表示宽度25%, 50%, 75%, 100% -->
