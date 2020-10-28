@@ -125,13 +125,6 @@ Nginx 是一个轻量级别的 web 服务器/反向代理服务器，特点是 �
                 root   html;
             }
 
-            # proxy the PHP scripts to Apache listening on 127.0.0.1:80
-            #
-            location /api/ {
-                proxy_pass http://admin.lenovo.com.cn/;
-            }
-
-
             # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
             #
             #location ~ \.php$ {

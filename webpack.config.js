@@ -119,8 +119,7 @@ module.exports = (env = {}) =>{
             port: "9997",
             proxy: {
                 '/api': {
-                    target: 'http://admin.lenovouat.com/',
-                    // target: 'http://his.coolvis.com:21920/',
+                    target: 'http://his.coolvis.com:21920/',
                     pathRewrite: {
                         "^/api": ""
                     },
